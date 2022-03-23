@@ -1,0 +1,8 @@
+C:\Users\niktr\Desktop\VisualStudio\MyFirstApp\bin\Debug\MyFirstApp.exe.config
+C:\Users\niktr\Desktop\VisualStudio\MyFirstApp\bin\Debug\MyFirstApp.exe
+C:\Users\niktr\Desktop\VisualStudio\MyFirstApp\bin\Debug\MyFirstApp.pdb
+C:\Users\niktr\Desktop\VisualStudio\MyFirstApp\obj\Debug\MyFirstApp.csproj.AssemblyReference.cache
+C:\Users\niktr\Desktop\VisualStudio\MyFirstApp\obj\Debug\MyFirstApp.csproj.SuggestedBindingRedirects.cache
+C:\Users\niktr\Desktop\VisualStudio\MyFirstApp\obj\Debug\MyFirstApp.csproj.CoreCompileInputs.cache
+C:\Users\niktr\Desktop\VisualStudio\MyFirstApp\obj\Debug\MyFirstApp.exe
+C:\Users\niktr\Desktop\VisualStudio\MyFirstApp\obj\Debug\MyFirstApp.pdb
