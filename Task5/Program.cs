@@ -1,18 +1,15 @@
 ﻿using System;
 
-
-
 internal class Program
 {
     static void Main(string[] args)
     {
-        int a = 5;
-        int b = 10;
-        Console.WriteLine($"Изначально: a = {a}, b = {b}");
-        int c = a;
-        a = b;
-        b = c;
-        Console.WriteLine($"После перестановки: a = {a}, b = {b}");
+        int apples = 5;
+        int pears = 10;
+        Console.WriteLine($"Изначально: a = {apples}, b = {pears}");
+        int replacingValue = apples;
+        apples = pears;
+        pears = replacingValue;
+        Console.WriteLine($"После перестановки: a = {apples}, b = {pears}");
     }
 }
-
