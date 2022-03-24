@@ -8,8 +8,8 @@ internal class Program
         int minutesInHour = 60;
         Console.WriteLine("Кол-во людей в очереди:");
         int peopleInQueues = Convert.ToInt32(Console.ReadLine());
-        int hours = (receptionTime * peopleInQueues) / minutesInHour;
-        int minutes = (receptionTime * peopleInQueues) % minutesInHour;
-        Console.WriteLine($"Вы должны отстоять в очереди {hours} часа и {minutes} минут.");
+        int waitingHours = (receptionTime * peopleInQueues) / minutesInHour;
+        int waitingMinutes = (receptionTime * peopleInQueues) % minutesInHour;
+        Console.WriteLine($"Вы должны отстоять в очереди {waitingHours} часа и {waitingMinutes} минут.");
     }
 }
