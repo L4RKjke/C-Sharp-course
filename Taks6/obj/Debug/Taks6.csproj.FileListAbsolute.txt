@@ -1,0 +1,8 @@
+C:\Users\niktr\Desktop\VisualStudio\Taks6\obj\Debug\Taks6.csproj.AssemblyReference.cache
+C:\Users\niktr\Desktop\VisualStudio\Taks6\obj\Debug\Taks6.csproj.SuggestedBindingRedirects.cache
+C:\Users\niktr\Desktop\VisualStudio\Taks6\obj\Debug\Taks6.csproj.CoreCompileInputs.cache
+C:\Users\niktr\Desktop\VisualStudio\Taks6\bin\Debug\Taks6.exe.config
+C:\Users\niktr\Desktop\VisualStudio\Taks6\bin\Debug\Taks6.exe
+C:\Users\niktr\Desktop\VisualStudio\Taks6\bin\Debug\Taks6.pdb
+C:\Users\niktr\Desktop\VisualStudio\Taks6\obj\Debug\Taks6.exe
+C:\Users\niktr\Desktop\VisualStudio\Taks6\obj\Debug\Taks6.pdb
