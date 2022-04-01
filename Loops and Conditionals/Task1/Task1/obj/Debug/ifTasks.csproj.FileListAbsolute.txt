@@ -1,8 +1,0 @@
-C:\Users\niktr\Desktop\VisualStudio\ifTasks\bin\Debug\ifTasks.exe.config
-C:\Users\niktr\Desktop\VisualStudio\ifTasks\bin\Debug\ifTasks.exe
-C:\Users\niktr\Desktop\VisualStudio\ifTasks\bin\Debug\ifTasks.pdb
-C:\Users\niktr\Desktop\VisualStudio\ifTasks\obj\Debug\ifTasks.csproj.AssemblyReference.cache
-C:\Users\niktr\Desktop\VisualStudio\ifTasks\obj\Debug\ifTasks.csproj.SuggestedBindingRedirects.cache
-C:\Users\niktr\Desktop\VisualStudio\ifTasks\obj\Debug\ifTasks.csproj.CoreCompileInputs.cache
-C:\Users\niktr\Desktop\VisualStudio\ifTasks\obj\Debug\ifTasks.exe
-C:\Users\niktr\Desktop\VisualStudio\ifTasks\obj\Debug\ifTasks.pdb
