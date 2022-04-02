@@ -10,12 +10,12 @@ namespace Task2
     {
         static void Main(string[] args)
         {
-            bool repeater = true;
+            bool isReapeat = true;
 
-            while (repeater == true)
+            while (isReapeat == true)
             {
                 Console.WriteLine("Введите свое сообщение:");
-                string userMessage = Convert.ToString(Console.ReadLine());
+                string userMessage = Console.ReadLine();
                 Console.WriteLine("Сколько раз вы хотите продублировать свое сообщение?");
                 int numberOfMessages = Convert.ToInt32(Console.ReadLine());
 
@@ -23,15 +23,16 @@ namespace Task2
                 {
                     Console.WriteLine(userMessage);
                 }
+
                 Console.WriteLine("Хотите запустить код еще раз? Если нет нажмите 'exit'");
 
-                if (Convert.ToString(Console.ReadLine()) == "exit")
+                if (Console.ReadLine() == "exit")
                 {
-                    repeater = false;
+                    isReapeat = false;
                 }
                 else
                 {
-                    repeater = true;
+                    isReapeat = true;
                 }
             }
         }
