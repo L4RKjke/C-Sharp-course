@@ -4,20 +4,35 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Task1
+namespace Task2
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Введите свое сообщение:");
-            string userMessage = Convert.ToString(Console.ReadLine());
-            Console.WriteLine("Сколько раз вы хотите продублировать свое сообщение?");
-            int numberOfMessages = Convert.ToInt32(Console.ReadLine());
+            bool flag = true;
 
-            for (int i = 0; i < numberOfMessages; i++)
+            while (flag == true)
             {
-                Console.WriteLine(userMessage);
+                Console.WriteLine("Введите свое сообщение:");
+                string userMessage = Convert.ToString(Console.ReadLine());
+                Console.WriteLine("Сколько раз вы хотите продублировать свое сообщение?");
+                int numberOfMessages = Convert.ToInt32(Console.ReadLine());
+
+                for (int i = 0; i < numberOfMessages; i++)
+                {
+                    Console.WriteLine(userMessage);
+                }
+                Console.WriteLine("Хотите запустить код еще раз? Если нет нажмите 'exit'");
+
+                if (Convert.ToString(Console.ReadLine()) == "exit")
+                {
+                    flag = false;
+                }
+                else
+                {
+                    flag = true;
+                }
             }
         }
     }
