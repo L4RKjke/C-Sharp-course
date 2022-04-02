@@ -4,23 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Task2
+namespace Task1
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Перечислите реки России, которые вы знаете:");
-            string stopWord = "exit";
+            Console.WriteLine("Введите свое сообщение:");
+            string userMessage = Convert.ToString(Console.ReadLine());
+            Console.WriteLine("Сколько раз вы хотите продублировать свое сообщение?");
+            int numberOfMessages = Convert.ToInt32(Console.ReadLine());
 
-            while (true)
+            for (int i = 0; i < numberOfMessages; i++)
             {
-                string word = Convert.ToString(Console.ReadLine());
-
-                if (word == stopWord)
-                {
-                    break;
-                }
+                Console.WriteLine(userMessage);
             }
         }
     }
