@@ -10,9 +10,9 @@ namespace Task2
     {
         static void Main(string[] args)
         {
-            bool flag = true;
+            bool repeater = true;
 
-            while (flag == true)
+            while (repeater == true)
             {
                 Console.WriteLine("Введите свое сообщение:");
                 string userMessage = Convert.ToString(Console.ReadLine());
@@ -27,11 +27,11 @@ namespace Task2
 
                 if (Convert.ToString(Console.ReadLine()) == "exit")
                 {
-                    flag = false;
+                    repeater = false;
                 }
                 else
                 {
-                    flag = true;
+                    repeater = true;
                 }
             }
         }
