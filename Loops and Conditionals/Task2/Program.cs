@@ -22,7 +22,6 @@ namespace Task2
                     break;
                 }
             }
-
         }
     }
 }
