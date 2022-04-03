@@ -22,6 +22,7 @@ namespace Task9
             for (int i = 0; i <= maxNumber; i++)
             {
                 sumOfN += givenNumber;
+                
                 for (int j = minNumber; j < maxNumber + 1; j++)
                 {
                     if (sumOfN == j)
