@@ -20,12 +20,6 @@ namespace Task8
                 string enteredPassword = Console.ReadLine();
                 attemptsLeft--;
 
-                if (attemptsLeft == 0)
-                {
-                    Console.WriteLine("Попыток больше нет!");
-                    isRepeat = false;
-                }
-
                 if (enteredPassword == password)
                 {
                     Console.WriteLine("safe password: 83742803");
@@ -34,6 +28,12 @@ namespace Task8
                 else
                 {
                     Console.WriteLine("Пароль невверный! Попыток осталось: " + attemptsLeft);
+
+                    if (attemptsLeft == 0)
+                    {
+                        Console.WriteLine("Попыток больше нет!");
+                        isRepeat = false;
+                    }
                 }
             }
         }
