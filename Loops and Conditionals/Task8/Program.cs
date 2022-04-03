@@ -25,6 +25,7 @@ namespace Task8
                     Console.WriteLine("Попыток больше нет!");
                     isRepeat = false;
                 }
+
                 if (enteredPassword == password)
                 {
                     Console.WriteLine("safe password: 83742803");
