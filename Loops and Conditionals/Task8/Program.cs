@@ -11,10 +11,10 @@ namespace Task8
         static void Main(string[] args)
         {
             string password = "12345678";
-            bool isCorrect = false;
+            bool isRepeat = true;
             int attemptsLeft = 3;
 
-            while (isCorrect == false)
+            while (isRepeat == true)
             {
                 Console.WriteLine("Введите пароль:");
                 string enteredPassword = Console.ReadLine();
@@ -23,19 +23,18 @@ namespace Task8
                 if (attemptsLeft == 0)
                 {
                     Console.WriteLine("Попыток больше нет!");
-                    break;
+                    isRepeat = false;
                 }
                 if (enteredPassword == password)
                 {
                     Console.WriteLine("safe password: 83742803");
-                    isCorrect = true;
+                    isRepeat = false;
                 }
                 else
                 {
                     Console.WriteLine("Пароль невверный! Попыток осталось: " + attemptsLeft);
                 }
             }
-            
         }
     }
 }
