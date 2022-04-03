@@ -18,11 +18,11 @@ namespace Task5
             float userCrownBalance = 300;
             bool isReapeat = true;
             int numberOfOperations = 0;
+            Console.WriteLine($"Баланc. d: {userDucatBalance} f: {userFlorenceBalance} k: {userCrownBalance}");
 
             while (isReapeat == true)
             {
                 numberOfOperations++;
-                Console.WriteLine($"Баланc. d: {userDucatBalance} f: {userFlorenceBalance} k: {userCrownBalance}");
                 Console.WriteLine("Выбирите валюту для обмена: флорены(f), дукаты(d), кроны(k).");
                 Console.WriteLine("Продать:");
                 string currencySale = Console.ReadLine();
