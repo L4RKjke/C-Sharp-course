@@ -10,26 +10,27 @@ namespace Task9
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Введите N от 1 до 27:");
-            int n = Convert.ToInt32(Console.ReadLine());
+            int startOfRange = 1;
+            int endOfRange = 27;
+            Random random = new Random();
+            int givenNumber = random.Next(startOfRange, endOfRange+1);
             int sumOfN = 0;
             int sumOfMultipleNumbers = 0;
-            int maxThreeDigitNumber = 999;
-            int minThreeDigitNumber = 100;
+            int maxNumber = 999;
+            int minNumber = 100;
 
-            for (int i = 0; i <= (maxThreeDigitNumber + 1) / n; i++)
+            for (int i = 0; i <= maxNumber; i++)
             {
-                sumOfN += n;
-                for (int j = minThreeDigitNumber; j < maxThreeDigitNumber + 1; j++)
+                sumOfN += givenNumber;
+                for (int j = minNumber; j < maxNumber + 1; j++)
                 {
                     if (sumOfN == j)
                     {
-                        Console.WriteLine(sumOfN);
                         sumOfMultipleNumbers++;
                     }
                 }
             }
-            Console.WriteLine($"Кол-во 3х значных чисел кратных {n}: {sumOfMultipleNumbers}");
+            Console.WriteLine($"Кол-во 3х значных чисел кратных {givenNumber}: {sumOfMultipleNumbers}");
         }
     }
 }
