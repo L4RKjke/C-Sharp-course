@@ -13,24 +13,11 @@ namespace Task7
             Console.WriteLine("Введите свое имя:");
             string name = Console.ReadLine();
             Console.WriteLine("Введите любой символ:");
-            char symbol = Convert.ToChar(Console.ReadLine());
-            for (int i = 0; i < 3; i++)
-            {
-                for (int j = 0; j < name.Length + 2; j++)
-                {
-                    if (i == 1)
-                    {
-                        Console.Write(symbol + name + symbol);
-                        break;
-                    }
-                    else
-                    {
-                        Console.Write(symbol);
-                    }
-                }
-                Console.WriteLine();
-            }
-
+            char symbol  = Convert.ToChar(Console.ReadLine());
+            string symbolLine = new string(symbol, name.Length + 2);
+            Console.WriteLine(symbolLine);
+            Console.WriteLine(symbol + name + symbol);
+            Console.WriteLine(symbolLine);
         }
     }
 }
