@@ -10,73 +10,65 @@ namespace Task5
     {
         static void Main(string[] args)
         {
-            float crownFlorenExchangeRate = 0.33f;
-            int florenCrownExchangeRate = 3;
-            float DucatCrownExchangeRate = 1.1f;
+            float crownToFloren = 0.33f;
+            float crownToDucat = 0.91f;
+            float florenToCrown = 3.0f;
+            float florenToDucat = 2.73f;
+            float DucatToFloren = 0.37f;
+            float DucatToCrown = 1.1f;
             float userDucatBalance = 420;
             float userFlorenceBalance = 100;
             float userCrownBalance = 300;
             bool isReapeat = true;
             int numberOfOperations = 0;
-            Console.WriteLine($"Баланc. d: {userDucatBalance} f: {userFlorenceBalance} k: {userCrownBalance}");
 
             while (isReapeat == true)
             {
                 numberOfOperations++;
-                Console.WriteLine("Выбирите валюту для обмена: флорены(f), дукаты(d), кроны(k).");
-                Console.WriteLine("Продать:");
-                string currencySale = Console.ReadLine();
-                Console.WriteLine("Сколько вы хотите " + currencySale + " обменять?");
+                Console.WriteLine($"Баланc. d: {userDucatBalance} f: {userFlorenceBalance} k: {userCrownBalance}");
+                Console.WriteLine("Валюта для обмена: флорены(f), дукаты(d), кроны(k).");
+                Console.WriteLine("Выберите операцию: 1) кроны -> флорены, 2) кроны -> дукаты, 3) флорены -> кроны, 4) флорены -> дукаты, 5) дукаты -> флорены, 6) дукаты -> кроны");
+                string currentDeal = Console.ReadLine();
+                Console.WriteLine("Сколько хотите обменять?");
                 float currencySaleAmount = float.Parse(Console.ReadLine());
-                Console.WriteLine("Купить:");
-                string currencyPurchase = Console.ReadLine();
 
-                switch (currencySale)
+                switch (currentDeal)
                 {
-                    case "f":
-                        switch (currencyPurchase)
-                        {
-                            case "d":
-                                userFlorenceBalance -= currencySaleAmount;
-                                userDucatBalance += ((currencySaleAmount / crownFlorenExchangeRate) / DucatCrownExchangeRate);
-                                break;
-                            case "k":
-                                userFlorenceBalance -= currencySaleAmount;
-                                userCrownBalance += (currencySaleAmount * florenCrownExchangeRate);
-                                break;
-                        }
+                    case "4":
+                        userFlorenceBalance -= currencySaleAmount;
+                        userDucatBalance += (currencySaleAmount * florenToDucat);
                         break;
-                    case "d":
-                        switch (currencyPurchase)
-                        {
-                            case "f":
-                                userDucatBalance -= currencySaleAmount;
-                                userFlorenceBalance += ((currencySaleAmount * DucatCrownExchangeRate) / florenCrownExchangeRate);
-                                break;
-                            case "k":
-                                userDucatBalance -= currencySaleAmount;
-                                userCrownBalance += DucatCrownExchangeRate * currencySaleAmount;
-                                break;
-                        }
+                    case "3":
+                        userFlorenceBalance -= currencySaleAmount;
+                        userCrownBalance += (currencySaleAmount * florenToCrown);
                         break;
-                    case "k":
-                        switch (currencyPurchase)
-                        {
-                            case "f":
-                                userCrownBalance -= currencySaleAmount;
-                                userFlorenceBalance += currencySaleAmount / florenCrownExchangeRate;
-                                break;
-                            case "d":
-                                userCrownBalance -= currencySaleAmount;
-                                userDucatBalance += (currencySaleAmount / DucatCrownExchangeRate);
-                                break;
-                        }
+                    case "5":
+                        userDucatBalance -= currencySaleAmount;
+                        userFlorenceBalance += (currencySaleAmount * DucatToFloren);
+                        break;
+                    case "6":
+                        userDucatBalance -= currencySaleAmount;
+                        userCrownBalance += (currencySaleAmount * DucatToCrown);
+                        break;
+                    case "1":
+                        userCrownBalance -= currencySaleAmount;
+                        userFlorenceBalance += (currencySaleAmount * crownToFloren);
+                        break;
+                    case "2":
+                        userCrownBalance -= currencySaleAmount;
+                        userDucatBalance += (currencySaleAmount * crownToDucat);
                         break;
                     default:
                         Console.WriteLine("Ошибка ввода!");
                         break;
                 }
-
+                if (userDucatBalance < 0 || userCrownBalance < 0 || userFlorenceBalance < 0)
+                {
+                    Console.WriteLine("Недостаточно средств, попробуйте еще раз!");
+                    userDucatBalance = 420;
+                    userFlorenceBalance = 100;
+                    userCrownBalance = 300;
+                }
                 Console.WriteLine("Продолжить обмен? Если нет напишите 'exit'");
                 Console.WriteLine($"Баланc после {numberOfOperations} операции. d: {userDucatBalance} f: {userFlorenceBalance} k: {userCrownBalance}");
 
