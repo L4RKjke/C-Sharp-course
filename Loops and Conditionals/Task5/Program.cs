@@ -14,11 +14,14 @@ namespace Task5
             float crownToDucat = 0.91f;
             float florenToCrown = 3.0f;
             float florenToDucat = 2.73f;
-            float DucatToFloren = 0.37f;
-            float DucatToCrown = 1.1f;
+            float ducatToFloren = 0.37f;
+            float ducatToCrown = 1.1f;
             float userDucatBalance = 420;
             float userFlorenceBalance = 100;
             float userCrownBalance = 300;
+            float initialUserDucatBalance = userDucatBalance;
+            float initialUserFlorenceBalance = userFlorenceBalance;
+            float initialUserCrownBalance = userCrownBalance;
             bool isReapeat = true;
             int numberOfOperations = 0;
 
@@ -28,46 +31,69 @@ namespace Task5
                 Console.WriteLine($"Баланc. d: {userDucatBalance} f: {userFlorenceBalance} k: {userCrownBalance}");
                 Console.WriteLine("Валюта для обмена: флорены(f), дукаты(d), кроны(k).");
                 Console.WriteLine("Выберите операцию: 1) кроны -> флорены, 2) кроны -> дукаты, 3) флорены -> кроны, 4) флорены -> дукаты, 5) дукаты -> флорены, 6) дукаты -> кроны");
-                string currentDeal = Console.ReadLine();
+                int currentDeal = Convert.ToInt32(Console.ReadLine());
                 Console.WriteLine("Сколько хотите обменять?");
                 float currencySaleAmount = float.Parse(Console.ReadLine());
 
                 switch (currentDeal)
                 {
-                    case "4":
+                    case 4:
+                        if (userFlorenceBalance < currencySaleAmount)
+                        {
+                            Console.WriteLine("Недостаточно средств, попробуйте еще раз!");
+                            break;
+                        }
                         userFlorenceBalance -= currencySaleAmount;
                         userDucatBalance += (currencySaleAmount * florenToDucat);
                         break;
-                    case "3":
+                    case 3:
+                        if (userFlorenceBalance < currencySaleAmount)
+                        {
+                            Console.WriteLine("Недостаточно средств, попробуйте еще раз!");
+                            break;
+                        }
                         userFlorenceBalance -= currencySaleAmount;
                         userCrownBalance += (currencySaleAmount * florenToCrown);
                         break;
-                    case "5":
+                    case 5:
+                        if (userDucatBalance < currencySaleAmount)
+                        {
+                            Console.WriteLine("Недостаточно средств, попробуйте еще раз!");
+                            break;
+                        }
                         userDucatBalance -= currencySaleAmount;
-                        userFlorenceBalance += (currencySaleAmount * DucatToFloren);
+                        userFlorenceBalance += (currencySaleAmount * ducatToFloren);
                         break;
-                    case "6":
+                    case 6:
+                        if (userDucatBalance < currencySaleAmount)
+                        {
+                            Console.WriteLine("Недостаточно средств, попробуйте еще раз!");
+                            break;
+                        }
                         userDucatBalance -= currencySaleAmount;
-                        userCrownBalance += (currencySaleAmount * DucatToCrown);
+                        userCrownBalance += (currencySaleAmount * ducatToCrown);
                         break;
-                    case "1":
+                    case 1:
+                        if (userCrownBalance < currencySaleAmount)
+                        {
+                            Console.WriteLine("Недостаточно средств, попробуйте еще раз!");
+                            break;
+                        }
                         userCrownBalance -= currencySaleAmount;
                         userFlorenceBalance += (currencySaleAmount * crownToFloren);
                         break;
-                    case "2":
+                    case 2:
+                        if (userCrownBalance < currencySaleAmount)
+                        {
+                            Console.WriteLine("Недостаточно средств, попробуйте еще раз!");
+                            break;
+                        }
                         userCrownBalance -= currencySaleAmount;
                         userDucatBalance += (currencySaleAmount * crownToDucat);
                         break;
                     default:
                         Console.WriteLine("Ошибка ввода!");
                         break;
-                }
-                if (userDucatBalance < 0 || userCrownBalance < 0 || userFlorenceBalance < 0)
-                {
-                    Console.WriteLine("Недостаточно средств, попробуйте еще раз!");
-                    userDucatBalance = 420;
-                    userFlorenceBalance = 100;
-                    userCrownBalance = 300;
                 }
                 Console.WriteLine("Продолжить обмен? Если нет напишите 'exit'");
                 Console.WriteLine($"Баланc после {numberOfOperations} операции. d: {userDucatBalance} f: {userFlorenceBalance} k: {userCrownBalance}");
