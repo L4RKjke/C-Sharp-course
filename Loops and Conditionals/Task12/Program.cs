@@ -48,6 +48,7 @@ namespace Task12
                         if (randomNumberInPercentInterval <= skipTurnСhance)
                         {
                             skipTurn = true;
+                            temporaryDamageBuff = 3;
                             bossHealth -= random.Next(userMinDamage, userMaxDamage) * temporaryDamageBuff;
                         }
                         break;
