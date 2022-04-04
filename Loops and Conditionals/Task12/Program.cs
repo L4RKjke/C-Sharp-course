@@ -22,7 +22,6 @@ namespace Task12
             int damageBuff = 2;
             int userHealthBuff = 1;
             int userSpiritBuff = 3;
-
             Random random = new Random();
             Console.WriteLine("Способности: ");
             Console.WriteLine("1) Простой удар: 25 - 40 урона");
@@ -44,6 +43,7 @@ namespace Task12
                         break;
                     case 2:
                         int skipTurnСhance = random.Next(0, 2);
+
                         if (skipTurnСhance == 0)
                         {
                             userHealth -= (random.Next(bossMinDamage, bossMaxDamage) * userArmor);
@@ -55,6 +55,7 @@ namespace Task12
                         }
                         break;
                     case 3:
+
                         if (!isSpiritCalled)
                         {
                             isSpiritCalled = true;
@@ -68,6 +69,7 @@ namespace Task12
                         }
                         break;
                     case 4:
+
                         if (isSpiritCalled)
                         {
                             userMinDamage = userSpiritBuff * userMinDamage;
@@ -90,7 +92,6 @@ namespace Task12
                     Console.WriteLine("Бой окончен. Вы проиграли!");
                     isRepeat = false;
                 }
-
                 else if (bossHealth <= 0)
                 {
                     Console.WriteLine("Бой окончен. Вы победили!");
