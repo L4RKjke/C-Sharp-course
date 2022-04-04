@@ -6,3 +6,11 @@ C:\Users\niktr\Desktop\VisualStudio\2nd\Task12\bin\Debug\Task12.exe
 C:\Users\niktr\Desktop\VisualStudio\2nd\Task12\bin\Debug\Task12.pdb
 C:\Users\niktr\Desktop\VisualStudio\2nd\Task12\obj\Debug\Task12.exe
 C:\Users\niktr\Desktop\VisualStudio\2nd\Task12\obj\Debug\Task12.pdb
+C:\Users\niktr\OneDrive\Документы\GitHub\test\Loops and Conditionals\Task12\obj\Debug\Task12.csproj.AssemblyReference.cache
+C:\Users\niktr\OneDrive\Документы\GitHub\test\Loops and Conditionals\Task12\obj\Debug\Task12.csproj.SuggestedBindingRedirects.cache
+C:\Users\niktr\OneDrive\Документы\GitHub\test\Loops and Conditionals\Task12\obj\Debug\Task12.csproj.CoreCompileInputs.cache
+C:\Users\niktr\OneDrive\Документы\GitHub\test\Loops and Conditionals\Task12\obj\Debug\Task12.exe
+C:\Users\niktr\OneDrive\Документы\GitHub\test\Loops and Conditionals\Task12\obj\Debug\Task12.pdb
+C:\Users\niktr\OneDrive\Документы\GitHub\test\Loops and Conditionals\Task12\bin\Debug\Task12.exe.config
+C:\Users\niktr\OneDrive\Документы\GitHub\test\Loops and Conditionals\Task12\bin\Debug\Task12.exe
+C:\Users\niktr\OneDrive\Документы\GitHub\test\Loops and Conditionals\Task12\bin\Debug\Task12.pdb
