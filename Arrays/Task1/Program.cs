@@ -20,16 +20,11 @@ namespace Task1
             };
 
             for (int i = 0; i < givenArray.GetLength(0); i++)
-            {
                 multiplyOfFirstColumn *= givenArray[i, 0];
 
-                for (int j = 0; j < givenArray.GetLength(1); j++)
-                {
-                    if (i == 1)
-                    {
-                        sumOfsecondString += givenArray[i, j];
-                    }
-                }
+            for (int j = 0; j < givenArray.GetLength(0); j++)
+            {
+                sumOfsecondString += givenArray[1, j];
             }
             Console.WriteLine("sum of second string: " + sumOfsecondString);
             Console.WriteLine("multiply of first column: " + multiplyOfFirstColumn);
