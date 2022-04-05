@@ -11,32 +11,38 @@ namespace Task4
         static void Main(string[] args)
         {
             bool isInput = true;
-            string[] numbersArray = new string[1];
-            string[] tempararyNumberArray = new string[numbersArray.Length + 1];
+            int[] numbersArray = new int[1];
+            int[] tempararyNumberArray = new int[numbersArray.Length + 1];
             int sum = 0;
             Console.WriteLine("Введите числа, сумму которых вы хотите узнать.\n");
 
             while (isInput)
             {
-                tempararyNumberArray[tempararyNumberArray.Length - 1] = Console.ReadLine();
                 numbersArray = tempararyNumberArray;
+                int minNumber = Int32.MinValue;
+                int maxNumber = Int32.MaxValue;
+                string inputValue = Console.ReadLine();
 
-                if (tempararyNumberArray[tempararyNumberArray.Length - 1] == "exit" || tempararyNumberArray[tempararyNumberArray.Length - 1] == "sum") 
+                if (inputValue == "exit" || inputValue == "sum" || !inputValue.All(char.IsDigit)) 
                 {
-                    switch(tempararyNumberArray[tempararyNumberArray.Length - 1])
+                    switch (inputValue)
                     {
-                        case "exit":
-                            isInput = false;
-                            break;
                         case "sum":
                             Console.WriteLine("Сумма введенных чисел равна: " + sum);
                             sum = 0;
+                            break;
+                        case "exit":
+                            isInput = false;
+                            break;
+                        default:
+                            Console.WriteLine("Ошибка ввода!");
                             break;
                     }
                 }
                 else
                 {
-                sum += Convert.ToInt32(tempararyNumberArray[tempararyNumberArray.Length - 1]);
+                    tempararyNumberArray[tempararyNumberArray.Length - 1] = Convert.ToInt32(inputValue);
+                    sum += Convert.ToInt32(inputValue);
                 }
             }
             
