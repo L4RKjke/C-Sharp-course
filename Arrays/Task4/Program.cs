@@ -12,24 +12,24 @@ namespace Task4
         {
             bool isInput = true;
             int[] numbersArray = new int[1];
-            int sum = 0;
             Console.WriteLine("Введите числа, сумму которых вы хотите узнать.\n");
+            int temporaryLengthStorage = 0;
 
             while (isInput)
             {
                 string inputValue = Console.ReadLine();
 
-                if (inputValue == "exit" || inputValue == "sum" || !int.TryParse(inputValue, out int result)) 
+                if (inputValue == "exit" || inputValue == "sum" || int.TryParse(inputValue, out int result) == false) 
                 {
                     switch (inputValue)
                     {
                         case "sum":
-                            sum = 0;
-
-                            for (int i = 0; i < numbersArray.Length; i++)
+                            int sum = 0;
+                            for (int i = temporaryLengthStorage; i < numbersArray.Length; i++)
                             {
                                 sum += numbersArray[i];
                             }
+                            temporaryLengthStorage = numbersArray.Length;
                             Console.WriteLine("Сумма введенных чисел равна: " + sum);
                             break;
                         case "exit":
