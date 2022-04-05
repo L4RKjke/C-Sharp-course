@@ -33,6 +33,7 @@ namespace Task5
                 else
                 {
                     repeatСounter++;
+
                     if (repeatСounter >= meetingsTimes)
                     {
                         meetingsTimes = repeatСounter;
