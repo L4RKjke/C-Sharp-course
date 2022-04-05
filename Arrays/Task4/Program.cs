@@ -19,8 +19,6 @@ namespace Task4
             while (isInput)
             {
                 numbersArray = tempararyNumberArray;
-                int minNumber = Int32.MinValue;
-                int maxNumber = Int32.MaxValue;
                 string inputValue = Console.ReadLine();
 
                 if (inputValue == "exit" || inputValue == "sum" || !inputValue.All(char.IsDigit)) 
