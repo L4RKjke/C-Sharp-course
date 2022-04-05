@@ -17,7 +17,6 @@ namespace Task4
 
             while (isInput)
             {
-                int[] temporaryNumbersArray = new int[numbersArray.Length + 1];
                 string inputValue = Console.ReadLine();
 
                 if (inputValue == "exit" || inputValue == "sum" || !int.TryParse(inputValue, out int result)) 
@@ -25,8 +24,12 @@ namespace Task4
                     switch (inputValue)
                     {
                         case "sum":
-                            Console.WriteLine("Сумма введенных чисел равна: " + sum);
                             sum = 0;
+                            for (int i = 0; i < numbersArray.Length; i++)
+                            {
+                                sum += numbersArray[i];
+                            }
+                            Console.WriteLine("Сумма введенных чисел равна: " + sum);
                             break;
                         case "exit":
                             isInput = false;
@@ -38,13 +41,14 @@ namespace Task4
                 }
                 else
                 {
+                    int[] temporaryNumbersArray = new int[numbersArray.Length + 1];
+
                     for (int i = 0; i < numbersArray.Length; i++)
                     {
                         temporaryNumbersArray[i] = numbersArray[i];
                     }
                     temporaryNumbersArray[temporaryNumbersArray.Length - 1] = Convert.ToInt32(inputValue);
                     numbersArray = temporaryNumbersArray;
-                    sum += Convert.ToInt32(inputValue);
                 }
             }
         }
