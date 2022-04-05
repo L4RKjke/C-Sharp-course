@@ -25,6 +25,7 @@ namespace Task4
                     {
                         case "sum":
                             sum = 0;
+
                             for (int i = 0; i < numbersArray.Length; i++)
                             {
                                 sum += numbersArray[i];
