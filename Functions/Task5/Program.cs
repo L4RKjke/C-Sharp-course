@@ -23,34 +23,32 @@ namespace Task5
         {
             int[] randomArray = new int[array.Length];
             int[] resultArray = new int[array.Length];
-            int r = 0;
+            int randomNumber = 0;
+            int tempValue = 0;
             Random random = new Random();
 
             for (int i = 0; i < array.Length; i++)
             {
-                while (Contain(randomArray, r))
+                while (Contain(randomArray, randomNumber))
                 {
-                    r = random.Next(0, array.Length + 1);
+                    randomNumber = random.Next(0, array.Length + 1);
                 }
-                randomArray[i] = r;
+                randomArray[i] = randomNumber;
             }
 
             for (int i = 0; i < array.Length; i++)
             {
-                resultArray[i] = array[randomArray[i] - 1];
-            }
-
-            for (int i = 0; i < array.Length; i++)
-            {
-                array[i] = resultArray[i];
+                tempValue = array[i];
+                array[i] = array[randomArray[i] - 1];
+                array[randomArray[i] - 1] = tempValue;
             }
         }
 
-        static bool Contain(int[] arr, int num)
+        static bool Contain(int[] array, int num)
         {
-            for (int i = 0; i < arr.Length; i++)
+            for (int i = 0; i < array.Length; i++)
             {
-                if (arr[i] == num)
+                if (array[i] == num)
                 {
                     return true;
                 }
