@@ -1,0 +1,8 @@
+C:\Users\niktr\Desktop\VisualStudio\Arrays\Task7 (Bubble-sort)\obj\Debug\Task7 (Bubble-sort).csproj.AssemblyReference.cache
+C:\Users\niktr\Desktop\VisualStudio\Arrays\Task7 (Bubble-sort)\obj\Debug\Task7 (Bubble-sort).csproj.SuggestedBindingRedirects.cache
+C:\Users\niktr\Desktop\VisualStudio\Arrays\Task7 (Bubble-sort)\obj\Debug\Task7 (Bubble-sort).csproj.CoreCompileInputs.cache
+C:\Users\niktr\Desktop\VisualStudio\Arrays\Task7 (Bubble-sort)\bin\Debug\Task7 (Bubble-sort).exe.config
+C:\Users\niktr\Desktop\VisualStudio\Arrays\Task7 (Bubble-sort)\bin\Debug\Task7 (Bubble-sort).exe
+C:\Users\niktr\Desktop\VisualStudio\Arrays\Task7 (Bubble-sort)\bin\Debug\Task7 (Bubble-sort).pdb
+C:\Users\niktr\Desktop\VisualStudio\Arrays\Task7 (Bubble-sort)\obj\Debug\Task7 (Bubble-sort).exe
+C:\Users\niktr\Desktop\VisualStudio\Arrays\Task7 (Bubble-sort)\obj\Debug\Task7 (Bubble-sort).pdb
