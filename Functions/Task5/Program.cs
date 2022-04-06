@@ -22,7 +22,6 @@ namespace Task5
         static void Shuffle(ref int[] array)
         {
             int[] randomArray = new int[array.Length];
-            int[] resultArray = new int[array.Length];
             int randomNumber = 0;
             int tempValue = 0;
             Random random = new Random();
