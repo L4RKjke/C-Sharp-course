@@ -32,8 +32,8 @@ namespace Task5
                 for (int i = 0; i < array.Length - 1; i++)
                 {
                     tempValue = array[i];
-                    array[i] = array[randomNumber + 1];
-                    array[randomNumber + 1] = tempValue;
+                    array[i] = array[randomNumber];
+                    array[randomNumber] = tempValue;
                 }
             }
         }

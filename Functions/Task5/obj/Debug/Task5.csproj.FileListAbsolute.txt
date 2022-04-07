@@ -6,3 +6,11 @@ C:\Users\niktr\Desktop\VisualStudio\Functions\Task5\obj\Debug\Task5.csproj.Sugge
 C:\Users\niktr\Desktop\VisualStudio\Functions\Task5\obj\Debug\Task5.csproj.CoreCompileInputs.cache
 C:\Users\niktr\Desktop\VisualStudio\Functions\Task5\obj\Debug\Task5.exe
 C:\Users\niktr\Desktop\VisualStudio\Functions\Task5\obj\Debug\Task5.pdb
+C:\Users\niktr\OneDrive\Документы\GitHub\test\Functions\Task5\bin\Debug\Task5.exe.config
+C:\Users\niktr\OneDrive\Документы\GitHub\test\Functions\Task5\bin\Debug\Task5.exe
+C:\Users\niktr\OneDrive\Документы\GitHub\test\Functions\Task5\bin\Debug\Task5.pdb
+C:\Users\niktr\OneDrive\Документы\GitHub\test\Functions\Task5\obj\Debug\Task5.csproj.AssemblyReference.cache
+C:\Users\niktr\OneDrive\Документы\GitHub\test\Functions\Task5\obj\Debug\Task5.csproj.SuggestedBindingRedirects.cache
+C:\Users\niktr\OneDrive\Документы\GitHub\test\Functions\Task5\obj\Debug\Task5.csproj.CoreCompileInputs.cache
+C:\Users\niktr\OneDrive\Документы\GitHub\test\Functions\Task5\obj\Debug\Task5.exe
+C:\Users\niktr\OneDrive\Документы\GitHub\test\Functions\Task5\obj\Debug\Task5.pdb
