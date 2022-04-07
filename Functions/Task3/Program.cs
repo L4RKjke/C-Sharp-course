@@ -10,10 +10,10 @@ namespace Task3
     {
         static void Main(string[] args)
         {
-
-            IntCheck();
+            Console.WriteLine(GetInt());
         }
-        static void IntCheck()
+
+        static int GetInt()
         {
             bool isClose = false;
 
@@ -23,7 +23,7 @@ namespace Task3
 
                 if (int.TryParse(enteredNumber, out int result))
                 {
-                    Console.WriteLine(enteredNumber);
+                    return Convert.ToInt32(enteredNumber);
                     isClose = true;
                 }
                 else
@@ -31,6 +31,7 @@ namespace Task3
                     Console.WriteLine("Попробуйте еще раз:");
                 }
             }
+            return 0;
         }
     }
 }
