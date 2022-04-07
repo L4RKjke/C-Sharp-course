@@ -25,16 +25,12 @@ namespace Task5
             int tempValue = 0;
             Random random = new Random();
 
-            for (int j = 0; j < random.Next(0, array.Length); j++)
+            for (int i = 0; i < array.Length - 1; i++)
             {
-                randomNumber = random.Next(0, array.Length);
-
-                for (int i = 0; i < array.Length - 1; i++)
-                {
-                    tempValue = array[i];
-                    array[i] = array[randomNumber];
-                    array[randomNumber] = tempValue;
-                }
+                randomNumber = random.Next(0, array.Length - 1);
+                tempValue = array[i];
+                array[i] = array[randomNumber];
+                array[randomNumber] = tempValue;
             }
         }
     }
