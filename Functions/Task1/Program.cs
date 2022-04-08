@@ -88,10 +88,10 @@ namespace Task1
             Console.WriteLine("Удаление досье\n");
             Console.WriteLine("Номер досье, которые вы хотите удалить:");
             int dossierToDelete = Convert.ToInt32(Console.ReadLine());
-            int mixDossierNumber = 1;
+            int minDossierNumber = 1;
             int maxDossierNumber = dataArray1.Length;
 
-            if (dossierToDelete <= maxDossierNumber & dossierToDelete >= mixDossierNumber)
+            if (dossierToDelete <= maxDossierNumber & dossierToDelete >= minDossierNumber)
             {    
                 dataArray1 = СutArray(dataArray1, dossierToDelete);
                 dataArray2 = СutArray(dataArray2, dossierToDelete);
