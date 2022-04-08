@@ -59,24 +59,10 @@ namespace Task1
         static void AddDossier(ref string[] dataArray1, ref string[] dataArray2)
         {
             Console.Clear();
-            string[] temporaryArray1 = new string[dataArray1.Length + 1];
-            string[] temporaryArray2 = new string[dataArray1.Length + 1];
-
-            for (int i = 0; i < dataArray1.Length; i++)
-            {
-                temporaryArray1[i] = dataArray1[i];
-            }
             Console.WriteLine("Ваше ФИО:");
-            temporaryArray1[dataArray1.Length-1] = Console.ReadLine();
-            dataArray1 = temporaryArray1;
-
-            for (int i = 0; i < dataArray2.Length; i++)
-            {
-                temporaryArray2[i] = dataArray2[i];
-            }
+            dataArray1 = ExpandArray(dataArray1);
             Console.WriteLine("Должность:");
-            temporaryArray2[dataArray2.Length - 1] = Console.ReadLine();
-            dataArray2 = temporaryArray2;
+            dataArray2 = ExpandArray(dataArray2);
             Console.WriteLine("Нажмите любую кнопку, чтобы вернуться в меню.");
             Console.ReadKey();
             Console.Clear();
@@ -102,28 +88,13 @@ namespace Task1
             Console.WriteLine("Удаление досье\n");
             Console.WriteLine("Номер досье, которые вы хотите удалить:");
             int dossierToDelete = Convert.ToInt32(Console.ReadLine());
-            string[] removeArray1 = new string[dataArray1.Length - 1];
-            string[] removeArray2 = new string[dataArray1.Length - 1];
             int mixDossierNumber = 1;
             int maxDossierNumber = dataArray1.Length;
 
             if (dossierToDelete <= maxDossierNumber & dossierToDelete >= mixDossierNumber)
-            {
-                for (int i = 0; i < removeArray1.Length; i++)
-                {
-                    if (i < dossierToDelete - 1)
-                    {
-                        removeArray1[i] = dataArray1[i];
-                        removeArray2[i] = dataArray2[i];
-                    }
-                    else
-                    {
-                        removeArray1[i] = dataArray1[i + 1];
-                        removeArray2[i] = dataArray2[i + 1];
-                    }
-                }
-                dataArray1 = removeArray1;
-                dataArray2 = removeArray2;
+            {    
+                dataArray1 = СutArray(dataArray1, dossierToDelete);
+                dataArray2 = СutArray(dataArray2, dossierToDelete);
             }
             else
             {
@@ -152,6 +123,37 @@ namespace Task1
             Console.WriteLine("Нажмите любую кнопку, чтобы вернуться в меню.");
             Console.ReadKey();
             Console.Clear();
+        }
+
+        static string[] ExpandArray(string [] array)
+        {
+            string[] temporaryArray = new string[array.Length + 1];
+
+            for (int i = 0; i < array.Length; i++)
+            {
+                temporaryArray[i] = array[i];
+            }
+            temporaryArray[array.Length - 1] = Console.ReadLine();
+            array = temporaryArray;
+            return array;
+        }
+        
+        static string [] СutArray(string [] array, int number)
+        {
+            string[] removeArray = new string[array.Length - 1];
+
+            for (int i = 0; i < removeArray.Length; i++)
+            {
+                if (i < number - 1)
+                {
+                    removeArray[i] = array[i];
+                }
+                else
+                {
+                    removeArray[i] = array[i + 1];
+                }
+            }
+            return removeArray;
         }
     }
 }
