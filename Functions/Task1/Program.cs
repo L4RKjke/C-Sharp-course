@@ -11,10 +11,12 @@ namespace Task1
         static void Main(string[] args)
         {
             bool isClose = false;
-            string[,] userData = new string[0, 4];
+            string[] usersFullName = new string[1];
+            string[] usersPosition = new string[1];
 
             while (isClose == false)
             {
+                Console.Clear();
                 Console.SetCursorPosition(7, 1);
                 Console.WriteLine("Меню\n");
                 Console.WriteLine("1 - Добавить досье\n");
@@ -22,27 +24,27 @@ namespace Task1
                 Console.WriteLine("3 - Удалить досье\n");
                 Console.WriteLine("4 - Поиск по фамилии\n");
                 Console.WriteLine("0 - Выход\n");
-                string menuComand = Convert.ToString(Convert.ToChar(Console.ReadKey(true).Key));
+                string menuComand = Convert.ToString(Console.ReadKey(true).Key);
 
                 switch (menuComand)
                 {
-                    case "1":
-                        AddDossier(ref userData);
+                    case "D1":
+                        AddDossier(ref usersFullName, ref usersPosition);
                         break;
 
-                    case "2":
-                        DossierList(ref userData);
+                    case "D2":
+                        PrintDossieList(usersFullName, usersPosition);
                         break;
 
-                    case "3":
-                        DeleteDossier(ref userData);
+                    case "D3":
+                        DeleteDossier(ref usersFullName, ref usersPosition);
                         break;
 
-                    case "4":
-                        SearchLastName(ref userData);
+                    case "D4":
+                        SearchDossier(usersFullName, usersPosition);
                         break;
 
-                    case "0":
+                    case "D0":
                         Console.Clear();
                         isClose = true;
                         break;
@@ -54,196 +56,99 @@ namespace Task1
             }
         }
 
-        static void AddDossier(ref string[,] dataArray)
+        static void AddDossier(ref string[] dataArray1, ref string[] dataArray2)
         {
-            bool closeSection1 = false;
-            int dossierСounter = 0;
+            Console.Clear();
+            string[] temporaryArray1 = new string[dataArray1.Length + 1];
+            string[] temporaryArray2 = new string[dataArray1.Length + 1];
 
-            while (closeSection1 == false)
+            for (int i = 0; i < dataArray1.Length; i++)
             {
-                Console.Clear();
-                Console.WriteLine("Добавление досье\n");
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("1 - добавить; 0 - выйти назад в меню\n");
-                Console.ResetColor();
-                Console.WriteLine("Кол-во досье:\n" + dataArray.GetLength(0));
-                string sectionComand1 = Convert.ToString(Convert.ToChar(Console.ReadKey(true).Key));
-
-                switch (sectionComand1)
-                {
-                    case "0":
-                        Console.Clear();
-                        closeSection1 = true;
-                        break;
-
-                    case "1":
-                        string[,] temporaryNumbersArray = new string[dataArray.GetLength(0) + 1, 4];
-
-                        for (int k = 0; k < dataArray.GetLength(0); k++)
-                        {
-                            for (int j = 0; j < dataArray.GetLength(1); j++)
-                            {
-                                temporaryNumbersArray[k, j] = dataArray[k, j];
-                            }
-                        }
-
-                        for (int i = 0; i < 4; i++)
-                        {
-                            switch (i)
-                            {
-                                case 0:
-                                    Console.Write("Напишите фамилию: \n");
-                                    break;
-
-                                case 1:
-                                    Console.Write("Напишите имя: \n");
-                                    break;
-
-                                case 2:
-                                    Console.Write("Напишите отчество: \n");
-                                    break;
-
-                                case 3:
-                                    Console.Write("Ваша должность: \n");
-                                    break;
-                            }
-                            temporaryNumbersArray[dossierСounter, i] = Console.ReadLine();
-                            dataArray = temporaryNumbersArray;
-                        }
-
-                        Console.WriteLine($"Ваши введенные данные: {dataArray[dossierСounter, 0]} {dataArray[dossierСounter, 1]} {dataArray[dossierСounter, 2]}, Должность: {dataArray[dossierСounter, 3]}\n");
-                        dossierСounter++;
-                        Console.WriteLine("Чтобы продолжить нажмите любую кнопку.");
-                        Console.ReadKey();
-                        Console.Clear();
-                        break;
-                }
+                temporaryArray1[i] = dataArray1[i];
             }
+            Console.WriteLine("Ваше ФИО:");
+            temporaryArray1[dataArray1.Length-1] = Console.ReadLine();
+            dataArray1 = temporaryArray1;
+
+            for (int i = 0; i < dataArray2.Length; i++)
+            {
+                temporaryArray2[i] = dataArray2[i];
+            }
+            Console.WriteLine("Должность:");
+            temporaryArray2[dataArray2.Length - 1] = Console.ReadLine();
+            dataArray2 = temporaryArray2;
+            Console.WriteLine("Нажмите любую кнопку, чтобы вернуться в меню.");
+            Console.ReadKey();
+            Console.Clear();
         }
 
-        static void DossierList(ref string[,] dataArray)
+        static void PrintDossieList(string[] dataArray1, string[] dataArray2)
         {
             Console.Clear();
             Console.WriteLine("Список всех досье:\n");
 
-            for (int i = 0; i < dataArray.GetLength(0); i++)
+            for (int i = 0; i < dataArray1.Length-1; i++)
             {
-                Console.Write(i + 1 + ") ");
-
-                for (int j = 0; j < dataArray.GetLength(1) - 1; j++)
-                {
-                    Console.Write(dataArray[i, j] + " ");
-                }
-                Console.Write("- " + (dataArray[i, 3]));
-                Console.WriteLine();
+                Console.WriteLine($"{i + 1}) {dataArray1[i]} - {dataArray2[i]}");
             }
             Console.WriteLine("Нажмите любую кнопку, чтобы вернуться в меню.");
             Console.ReadKey();
             Console.Clear();
         }
 
-        static void DeleteDossier(ref string[,] dataArray)
+        static void DeleteDossier(ref string[] dataArray1, ref string[] dataArray2)
         {
-            bool closeSection2 = false;
+            Console.Clear();
+            Console.WriteLine("Удаление досье\n");
+            Console.WriteLine("Номер досье, которые вы хотите удалить:");
+            int dossierToDelete = Convert.ToInt32(Console.ReadLine());
+            string[] removeArray1 = new string[dataArray1.Length - 1];
+            string[] removeArray2 = new string[dataArray1.Length - 1];
+            int mixDossierNumber = 1;
+            int maxDossierNumber = dataArray1.Length;
 
-            while (closeSection2 == false)
+            if (dossierToDelete <= maxDossierNumber & dossierToDelete >= mixDossierNumber)
             {
-                Console.Clear();
-                Console.WriteLine("Удаление досье\n");
-                Console.WriteLine("Кол-во досье:" + dataArray.GetLength(0) + "\n");
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("1 - удалить; 0 - выйти назад в меню\n");
-                Console.ResetColor();
-                string sectionComand2 = Convert.ToString(Convert.ToChar(Console.ReadKey(true).Key));
-
-                switch (sectionComand2)
+                for (int i = 0; i < removeArray1.Length; i++)
                 {
-                    case "0":
-                        Console.Clear();
-                        closeSection2 = true;
-                        break;
-
-                    case "1":
-                                        Console.WriteLine("Выберите номер номер досье, которое хотите удалить");
-                int removeFileNumber = Convert.ToInt32(Console.ReadLine());
-
-                        if (removeFileNumber > dataArray.GetLength(0))
-                        {
-                            Console.WriteLine("Номер введен некорректно!");
-                        }
-                        else
-                        {
-                            string[,] removeArray = new string[dataArray.GetLength(0) - 1, 4];
-
-                            for (int i = 0; i < removeArray.GetLength(0); i++)
-                            {
-                                for (int j = 0; j < removeArray.GetLength(1); j++)
-                                {
-                                    if (i < removeFileNumber - 1)
-                                    {
-                                        removeArray[i, j] = dataArray[i, j];
-                                    }
-                                    else
-                                    {
-                                        removeArray[i, j] = dataArray[i + 1, j];
-                                    }
-                                }
-                            }
-                            dataArray = removeArray;
-                            Console.WriteLine("Кол-во досье:\n" + dataArray.GetLength(0));
-                        }
-                        Console.WriteLine("Чтобы продолжить нажмите любую кнопку.");
-                        Console.ReadKey();
-                        Console.Clear();
-                        break;
+                    if (i < dossierToDelete - 1)
+                    {
+                        removeArray1[i] = dataArray1[i];
+                        removeArray2[i] = dataArray2[i];
+                    }
+                    else
+                    {
+                        removeArray1[i] = dataArray1[i + 1];
+                        removeArray2[i] = dataArray2[i + 1];
+                    }
                 }
+                dataArray1 = removeArray1;
+                dataArray2 = removeArray2;
             }
+            else
+            {
+                Console.WriteLine("Номер введен некорректно!");
+            }
+            Console.WriteLine("Нажмите любую кнопку, чтобы вернуться в меню.");
+            Console.ReadKey();
+            Console.Clear();
         }
 
-        static void SearchLastName(ref string[,] dataArray)
+        static void SearchDossier(string[] dataArray1, string[] dataArray2)
         {
             Console.Clear();
             Console.WriteLine("Поиск по фамилии\n");
             Console.WriteLine("Введите фамилию для поиска по фамилии:");
             string enteredLastName = Console.ReadLine();
             Console.WriteLine("Результат поиска:\n");
-            Console.ForegroundColor = ConsoleColor.Green;
-            int lastNameCounter = 1;
 
-            for (int i = 0; i < dataArray.GetLength(0); i++)
+            for (int i = 0; i < dataArray1.Length-1; i++)
             {
-                for (int j = 0; j < dataArray.GetLength(1); j++)
+                if (dataArray1[i].Contains(enteredLastName))
                 {
-                    if (enteredLastName == dataArray[i, 0])
-                    {
-                        switch (j)
-                        {
-                            case 0:
-                                Console.Write($"{lastNameCounter}) Имя: ");
-                                break;
-
-                            case 1:
-                                Console.Write(", Фамилия: ");
-                                break;
-
-                            case 2:
-                                Console.Write(", Отчество: ");
-                                break;
-
-                            case 3:
-                                Console.Write(", Должность: ");
-                                break;
-                        }
-                        Console.Write($"{dataArray[i, j]}");
-                    }
-                }
-                if (enteredLastName == dataArray[i, 0])
-                {
-                    lastNameCounter++;
-                    Console.WriteLine("");
+                    Console.WriteLine(dataArray1[i] + " - " + dataArray2[i]);
                 }
             }
-            Console.ResetColor();
             Console.WriteLine("Нажмите любую кнопку, чтобы вернуться в меню.");
             Console.ReadKey();
             Console.Clear();
