@@ -23,7 +23,7 @@ namespace Task3
 
                 if (int.TryParse(enteredNumber, out int result))
                 {
-                    return Convert.ToInt32(enteredNumber);
+                    return result;
                     isClose = true;
                 }
                 else
