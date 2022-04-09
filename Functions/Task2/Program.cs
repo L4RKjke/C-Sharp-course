@@ -31,13 +31,15 @@ namespace Task2
         static void DrawBar(int givenPercent, int maxPercent, ConsoleColor color, int position, char symbol = ' ')
         {
             Console.SetCursorPosition(0, position);
-            ConsoleColor barColor = Console.BackgroundColor; 
+            ConsoleColor barColor = Console.BackgroundColor;
+            int barSizeDivider = 5;
+
             if (givenPercent <= maxPercent & givenPercent >= 0)
             {
                 Console.Write("|");
-                for (int i = 0; i < maxPercent / 5; i++)
+                for (int i = 0; i < maxPercent / barSizeDivider; i++)
                 {
-                    if (i < givenPercent / 5)
+                    if (i < givenPercent / barSizeDivider)
                     {
                         Console.BackgroundColor = color;
                         Console.Write('#');
