@@ -10,7 +10,7 @@ namespace Task8
     {
         static void Main(string[] args)
         {
-            int [] array = { 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110 };
+            int[] array = { 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110 };
             Console.WriteLine("Введите шаг сдвига n: \n");
             int moveStep = Convert.ToInt32(Console.ReadLine());
             int tempValue = 0;
