@@ -88,7 +88,7 @@ namespace Task4
 
             if (map[thornHeigth + thornDirectionY, numberSignPosition] != '#')
             {
-                for (int i = thornPositionsX[0]; i < thornPositionsX[5]; i = i + 2)
+                for (int i = thornPositionsX[0]; i < thornPositionsX[5] + 1; i = i + 2)
                 {
                     Console.SetCursorPosition(i, thornHeigth);
                     Console.WriteLine(" ");
@@ -96,7 +96,7 @@ namespace Task4
 
                 thornHeigth += thornDirectionY;
 
-                for (int i = thornPositionsX[0]; i < thornPositionsX[5]; i = i + 2)
+                for (int i = thornPositionsX[0]; i < thornPositionsX[5] + 1; i = i + 2)
                 {
                     Console.SetCursorPosition(i, thornHeigth);
                     Console.WriteLine(symbol);

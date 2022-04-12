@@ -22,3 +22,11 @@ C:\Users\niktr\Desktop\VisualStudio\Functions\Task4 (Snake-Man) v2\obj\Debug\Tas
 C:\Users\niktr\Desktop\VisualStudio\Functions\Task4 (Snake-Man) v2\obj\Debug\Task4.csproj.CoreCompileInputs.cache
 C:\Users\niktr\Desktop\VisualStudio\Functions\Task4 (Snake-Man) v2\obj\Debug\Task4.exe
 C:\Users\niktr\Desktop\VisualStudio\Functions\Task4 (Snake-Man) v2\obj\Debug\Task4.pdb
+C:\Users\niktr\OneDrive\Документы\GitHub\test\Functions\Task4 (Snake-Man)\bin\Debug\Task4.exe.config
+C:\Users\niktr\OneDrive\Документы\GitHub\test\Functions\Task4 (Snake-Man)\bin\Debug\Task4.exe
+C:\Users\niktr\OneDrive\Документы\GitHub\test\Functions\Task4 (Snake-Man)\bin\Debug\Task4.pdb
+C:\Users\niktr\OneDrive\Документы\GitHub\test\Functions\Task4 (Snake-Man)\obj\Debug\Task4.csproj.AssemblyReference.cache
+C:\Users\niktr\OneDrive\Документы\GitHub\test\Functions\Task4 (Snake-Man)\obj\Debug\Task4.csproj.SuggestedBindingRedirects.cache
+C:\Users\niktr\OneDrive\Документы\GitHub\test\Functions\Task4 (Snake-Man)\obj\Debug\Task4.csproj.CoreCompileInputs.cache
+C:\Users\niktr\OneDrive\Документы\GitHub\test\Functions\Task4 (Snake-Man)\obj\Debug\Task4.exe
+C:\Users\niktr\OneDrive\Документы\GitHub\test\Functions\Task4 (Snake-Man)\obj\Debug\Task4.pdb
