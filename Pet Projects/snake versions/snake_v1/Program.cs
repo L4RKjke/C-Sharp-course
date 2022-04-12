@@ -12,9 +12,9 @@ namespace Task4
         static void Main(string[] args)
         {
             Console.CursorVisible = false;
-            bool isClose = true;
+            bool isClose = false;
 
-            while (isClose)
+            while (isClose == false)
             {
                 Console.Clear();
                 Console.WriteLine("Собирите 15 яблок, при этом постарайтесь не умереть от голада.");
@@ -28,7 +28,7 @@ namespace Task4
                         Console.Clear();
                         bool isPlaying = true;
                         int snakeX, snakeY;
-                        int DX = 0, DY = 1;
+                        int directionX = 0, directionY = 1;
                         int randX = 0;
                         int randY = 0;
                         int apples = 0;
@@ -38,11 +38,15 @@ namespace Task4
                         char[,] map = new char[31, 15];
                         int pastPositionX = snake[0, 0];
                         int pastPositionY = snake[0, 1];
-                        Random rand = new Random();
+                        Random random = new Random();
                         snakeX = 2;
                         snakeY = 7;
                         int speed = 300;
                         int healthPoint = 3;
+                        int inticatorPosition1 = 16;
+                        int inticatorPosition2 = 18;
+                        float barMultiplier1 = 6.666f;
+                        float barMultiplier2 = 31.01f;
                         DrawMap(map);
 
                         while (isPlaying)
@@ -53,46 +57,42 @@ namespace Task4
                                 switch (key.Key)
                                 {
                                     case ConsoleKey.UpArrow:
-                                        DX = -1; DY = 0;
+                                        directionX = -1; directionY = 0;
                                         break;
 
                                     case ConsoleKey.DownArrow:
-                                        DX = 1; DY = 0;
+                                        directionX = 1; directionY = 0;
                                         break;
 
                                     case ConsoleKey.LeftArrow:
-                                        DX = 0; DY = -1;
+                                        directionX = 0; directionY = -1;
                                         break;
 
                                     case ConsoleKey.RightArrow:
-                                        DX = 0; DY = 1;
+                                        directionX = 0; directionY = 1;
                                         break;
                                 }
                             }
-                            MoveSnake(ref snakeX, ref snakeY, ref snake, DX, DY, tempValue, ref pastPositionX, ref pastPositionY);
+                            MoveSnake(ref snakeX, ref snakeY, snake, directionX, directionY, tempValue, ref pastPositionX, ref pastPositionY);
                             DrawSnake(snake);
-                            UpdateApples(ref time, ref randX, ref randY, ref healthPoint, rand);
+                            UpdateApples(ref time, ref randX, ref randY, ref healthPoint, random);
                             EatApple(ref apples, healthPoint, snakeX, snakeY, randX, randY, ref time, ref speed, pastPositionX, pastPositionY, ref snake);
                             CheckWinLose(apples, healthPoint, snake, ref isPlaying);
-                            int inticatorPos1 = 16;
-                            int inticatorPos2 = 18;
-                            float barMultiplier1 = 6.666f;
-                            float barMultiplier2 = 31.01f;
-                            DrawBar(apples, barMultiplier1, inticatorPos1, ConsoleColor.Red);
-                            DrawBar(healthPoint, barMultiplier2, inticatorPos2, ConsoleColor.DarkCyan);
+                            DrawBar(apples, barMultiplier1, inticatorPosition1, ConsoleColor.Red);
+                            DrawBar(healthPoint, barMultiplier2, inticatorPosition2, ConsoleColor.DarkCyan);
                             System.Threading.Thread.Sleep(speed);
                         }
                         break;
 
                     default:
                         Console.WriteLine("Неверный номер команды!");
-                        isClose = false;
+                        isClose = true;
                         break;
                 }
             }
         }
 
-        static void MoveSnake (ref int snakeX, ref int snakeY, ref int [,] snake, int DX, int DY, int tempValue, ref int pastPositionX, ref int pastPositionY)
+        static void MoveSnake (ref int snakeX, ref int snakeY, int [,] snake, int directionX, int directionY, int tempValue, ref int pastPositionX, ref int pastPositionY)
         {
             pastPositionX = snake[0, 0];
             pastPositionY = snake[0, 1];
@@ -106,8 +106,8 @@ namespace Task4
                 snake[i, 1] = snake[i + 1, 1];
                 snake[i + 1, 1] = tempValue;
             }
-            snakeX += DX;
-            snakeY += DY;
+            snakeX += directionX;
+            snakeY += directionY;
             snake[snake.GetLength(0) - 1, 0] = snakeX;
             snake[snake.GetLength(0) - 1, 1] = snakeY;
         }
@@ -126,14 +126,14 @@ namespace Task4
             Console.WriteLine(" ");
         }
 
-        static void UpdateApples(ref int time, ref int randX, ref int randY, ref int healthPoint, Random rand)
+        static void UpdateApples(ref int time, ref int randX, ref int randY, ref int healthPoint, Random random)
         {
             time++;
 
             if (time == 30)
             {
-                randX = rand.Next(3, 10);
-                randY = rand.Next(3, 27);
+                randX = random.Next(3, 10);
+                randY = random.Next(3, 27);
                 Console.SetCursorPosition(randY, randX);
                 Console.ForegroundColor = ConsoleColor.DarkRed;
                 Console.WriteLine("+");
@@ -147,7 +147,7 @@ namespace Task4
                 Console.WriteLine("+");
             }
 
-            if (time == 55)
+            if (time == 60)
             {
                 Console.SetCursorPosition(randY, randX);
                 Console.WriteLine(" ");
@@ -191,9 +191,9 @@ namespace Task4
             }
         }
 
-        static void DrawBar(int indicatorValue, float barMultiplier, int inticatorPos, ConsoleColor color)
+        static void DrawBar(int indicatorValue, float barMultiplier, int inticatorPosition, ConsoleColor color)
         {
-            Console.SetCursorPosition(0, inticatorPos);
+            Console.SetCursorPosition(0, inticatorPosition);
 
             int barSizeDivider = 3;
             double givenPercent = indicatorValue * barMultiplier;
