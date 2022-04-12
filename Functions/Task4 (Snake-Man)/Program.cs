@@ -13,7 +13,8 @@ namespace Task4
         {
             Console.CursorVisible = false;
             bool isPlaying = true;
-            int directionX = 0, directionY = 0;
+            int directionX = 0;
+            int directionY = 0;
             int snakeX = 4;
             int snakeY = 2;
             int minThornHeight = 7;
