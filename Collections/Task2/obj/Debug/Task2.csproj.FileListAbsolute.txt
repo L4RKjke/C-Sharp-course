@@ -6,3 +6,11 @@ C:\Users\niktr\Desktop\VisualStudio\Collections\Task2\obj\Debug\Task2.csproj.Sug
 C:\Users\niktr\Desktop\VisualStudio\Collections\Task2\obj\Debug\Task2.csproj.CoreCompileInputs.cache
 C:\Users\niktr\Desktop\VisualStudio\Collections\Task2\obj\Debug\Task2.exe
 C:\Users\niktr\Desktop\VisualStudio\Collections\Task2\obj\Debug\Task2.pdb
+C:\Users\niktr\OneDrive\Документы\GitHub\test\Collections\Task2\bin\Debug\Task2.exe.config
+C:\Users\niktr\OneDrive\Документы\GitHub\test\Collections\Task2\bin\Debug\Task2.exe
+C:\Users\niktr\OneDrive\Документы\GitHub\test\Collections\Task2\bin\Debug\Task2.pdb
+C:\Users\niktr\OneDrive\Документы\GitHub\test\Collections\Task2\obj\Debug\Task2.csproj.AssemblyReference.cache
+C:\Users\niktr\OneDrive\Документы\GitHub\test\Collections\Task2\obj\Debug\Task2.csproj.SuggestedBindingRedirects.cache
+C:\Users\niktr\OneDrive\Документы\GitHub\test\Collections\Task2\obj\Debug\Task2.csproj.CoreCompileInputs.cache
+C:\Users\niktr\OneDrive\Документы\GitHub\test\Collections\Task2\obj\Debug\Task2.exe
+C:\Users\niktr\OneDrive\Документы\GitHub\test\Collections\Task2\obj\Debug\Task2.pdb
