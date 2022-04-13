@@ -26,11 +26,7 @@ namespace Task3
                         break;
 
                     case "sum":
-                        Console.WriteLine(FoldNumbers(out int sum, numbers));
-                        numbers.RemoveAll(numbers.Contains);
-                        Console.WriteLine("Нажмите любую кнопку, чтобы продолжить");
-                        Console.ReadKey(true);
-                        Console.Clear();
+                        FoldNumbers(out int sum, numbers);
                         break;
 
                     default:
@@ -48,9 +44,13 @@ namespace Task3
             }
         }
 
-        static int FoldNumbers(out int sum, List<int> numbers)
+        static void FoldNumbers(out int sum, List<int> numbers)
         {
-            return sum = numbers.Sum();
+            Console.WriteLine(sum = numbers.Sum());
+            Console.WriteLine("Нажмите любую кнопку, чтобы продолжить");
+            Console.ReadKey(true);
+            Console.Clear();
+            numbers.RemoveAll(numbers.Contains);
         }
     }
 }
