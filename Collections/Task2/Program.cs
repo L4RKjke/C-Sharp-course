@@ -12,12 +12,12 @@ namespace Task2
         {
             int shopBalance = 0;
             List<int> prices = new List<int>() { 700, 80, 2000, 60 };
-            Queue<int> clients = new Queue<int>(prices);
+            Queue<int> productPrices = new Queue<int>(prices);
 
-            while (clients.Count > 0)
+            while (productPrices.Count > 0)
             {
-                shopBalance += clients.Peek();
-                clients.Dequeue();
+                shopBalance += productPrices.Peek();
+                productPrices.Dequeue();
                 Console.WriteLine($"Баланс магазина: {shopBalance}");
                 Console.ReadKey(true);
                 Console.Clear();
