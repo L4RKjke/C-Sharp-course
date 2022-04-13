@@ -10,23 +10,18 @@ namespace Tasl1
     {
         static void Main(string[] args)
         {
-            bool IsWordInDictionary = false;
             string userWord = Console.ReadLine();
-            Dictionary<int, string> firstNames = new Dictionary<int, string>()
+            Dictionary<string, int> firstNames = new Dictionary<string, int>()
             {
-                { 1, "Tom"},
-                { 2, "Sam"},
-                { 3, "Bob"}
+                { "Tom", 1},
+                { "Sam", 2},
+                { "Bob", 3}
             };
-            foreach (var nameIndex in firstNames.Keys)
+            if (firstNames.ContainsKey(userWord))
             {
-                if (firstNames[nameIndex] == userWord)
-                {
-                    Console.WriteLine("Значение введенного слова: " + nameIndex);
-                    IsWordInDictionary = true;
-                }
+                Console.WriteLine(firstNames[userWord]);
             }
-            if (IsWordInDictionary == false)
+            else
             {
                 Console.WriteLine("'" + userWord + "' нет в списке!");
             }
