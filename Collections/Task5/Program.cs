@@ -10,14 +10,14 @@ namespace Task5
     {
         static void Main(string[] args)
         {
-            int[] array1 = { 1, 3, 2, 1, 12};
-            int[] array2 = { 3, 1, 6, 6, 8, 4 };
-            MergeArrays(array1, array2, out List<int> list);
+            string[] array1 = { "6", "7", "12", "1", "2" };
+            string[] array2 = { "6", "7", "1", "65", "3", "5" };
+            MergeArrays(array1, array2, out List<string> list);
         }
 
-        static void MergeArrays(int [] array1, int[] array2, out List<int> list)
+        static void MergeArrays(string[] array1, string[] array2, out List<string> list)
         {
-            list = new List<int>();
+            list = new List<string>();
 
             for (int i = 0; i < array1.Length + array2.Length; i++)
             {
@@ -26,7 +26,7 @@ namespace Task5
             }
         }
 
-        static void AddUniqueElement (List<int>  list, int [] array, int index)
+        static void AddUniqueElement (List<string>  list, string[] array, int index)
         {
             if (index < array.Length)
             {
