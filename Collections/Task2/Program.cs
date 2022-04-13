@@ -11,8 +11,8 @@ namespace Task2
         static void Main(string[] args)
         {
             int shopBalance = 0;
-            List<int> clientsNames = new List<int>() { 700, 80, 2000, 60 };
-            Queue<int> clients = new Queue<int>(clientsNames);
+            List<int> prices = new List<int>() { 700, 80, 2000, 60 };
+            Queue<int> clients = new Queue<int>(prices);
 
             while (clients.Count > 0)
             {
