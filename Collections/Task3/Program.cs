@@ -19,34 +19,38 @@ namespace Task3
                 Console.WriteLine("Ввод:");
                 string inputValue = Console.ReadLine();
 
-                if (int.TryParse(inputValue, out int result) == true)
+                switch (inputValue)
                 {
-                    numbers.Add(result);
-                }
-                else
-                {
-                    switch (inputValue)
-                    {
-                        case "exit":
-                            isClose = true;
-                            break;
+                    case "exit":
+                        isClose = true;
+                        break;
 
-                        case "sum":
-                            int sum;
-                            sum = numbers.Sum();
-                            Console.WriteLine(sum);
-                            numbers.RemoveAll(numbers.Contains);
-                            Console.WriteLine("Нажмите любую кнопку, чтобы продолжить");
-                            Console.ReadKey(true);
-                            Console.Clear();
-                            break;
+                    case "sum":
+                        Console.WriteLine(FoldNumbers(out int sum, numbers));
+                        numbers.RemoveAll(numbers.Contains);
+                        Console.WriteLine("Нажмите любую кнопку, чтобы продолжить");
+                        Console.ReadKey(true);
+                        Console.Clear();
+                        break;
 
-                        default:
+                    default:
+
+                        if (int.TryParse(inputValue, out int result) == true)
+                        {
+                            numbers.Add(result);
+                        }
+                        else
+                        {
                             Console.WriteLine("Ошибка ввода!");
-                            break;
-                    }
+                        }
+                        break;
                 }
             }
+        }
+
+        static int FoldNumbers(out int sum, List<int> numbers)
+        {
+            return sum = numbers.Sum();
         }
     }
 }
