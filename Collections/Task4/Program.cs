@@ -32,11 +32,11 @@ namespace Task4
                         break;
 
                     case '2':
-                        PrintEmployees(employees);
+                        PrintDossieList(employees);
                         break;
 
                     case '3':
-                        DeleteEmployee(employees);
+                        DeleteDossier(employees);
                         break;
 
                     case '0':
@@ -50,31 +50,51 @@ namespace Task4
                         break;
                 }
             }
+
         }
 
         static void AddEmployee(Dictionary<string, string> employees)
         {
             Console.WriteLine("Введите ФИО и должность:");
             string fullName = Console.ReadLine();
-            string employeePosition = Console.ReadLine();;
-            employees[fullName] = employeePosition;
+            string employeePosition = Console.ReadLine();
+
+            if (employees.Keys.Contains(fullName) == false)
+            {
+                employees[fullName] = employeePosition;
+            }
+            else
+            {
+                Console.WriteLine("Работник уже в списке в списке.");
+                Console.ReadKey();
+            }
         }
 
-        static void PrintEmployees(Dictionary<string, string> employees)
+        static void PrintDossieList(Dictionary<string, string> employees)
         {
             foreach (var employee in employees)
             {
                 Console.WriteLine(employee.Value + " - " + employee.Key);
             }
+
             Console.WriteLine("Нажмите любую кнопку, чтобы вернуться в меню.");
             Console.ReadKey();
         }
 
-        static void DeleteEmployee(Dictionary<string, string> employees)
+        static void DeleteDossier(Dictionary<string, string> employees)
         {
             Console.WriteLine("Введите ФИО для удаления досье: ");
             string employeeFullName = Console.ReadLine();
-            employees.Remove(employeeFullName);
+
+            if (employees.Keys.Contains(employeeFullName) == true)
+            {
+                employees.Remove(employeeFullName);
+            }
+            else
+            {
+                Console.WriteLine("Человека нет в списке.");
+                Console.ReadKey();
+            }
         }
     }
 }
