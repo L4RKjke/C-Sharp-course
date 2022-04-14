@@ -11,35 +11,35 @@ namespace Task4
         static void Main(string[] args)
         {
             bool isClose = false;
-            Dictionary<string, string> allDossier = new Dictionary<string, string>();  
+            Dictionary<string, string> employees = new Dictionary<string, string>();  
 
             while (isClose == false)
             {
                 Console.Clear();
                 Console.SetCursorPosition(7, 1);
                 Console.WriteLine("Меню\n");
-                Console.WriteLine("1 - Добавить досье\n");
-                Console.WriteLine("2 - Вывести все досье\n");
-                Console.WriteLine("3 - Удалить досье\n");
+                Console.WriteLine("1 - Добавить сотрудника\n");
+                Console.WriteLine("2 - Список всех сотрудников\n");
+                Console.WriteLine("3 - Удалить досье сотрдника\n");
                 Console.WriteLine("0 - Выход\n");
                 char menuComand = Convert.ToChar(Console.ReadKey(true).Key);
+                Console.Clear();
 
                 switch (menuComand)
                 {
                     case '1':
-                        AddDossier(allDossier);
+                        AddEmployee(employees);
                         break;
 
                     case '2':
-                        PrintDossieList(allDossier);
+                        PrintDossieList(employees);
                         break;
 
                     case '3':
-                        DeleteDossier(allDossier);
+                        DeleteDossier(employees);
                         break;
 
                     case '0':
-                        Console.Clear();
                         isClose = true;
                         break;
 
@@ -52,33 +52,29 @@ namespace Task4
             }
         }
 
-        static void AddDossier(Dictionary<string, string> allDossier)
+        static void AddEmployee(Dictionary<string, string> employees)
         {
-            Console.Clear();
             Console.WriteLine("Введите ФИО и должность:");
-            string usersfullName = Console.ReadLine();
-            string usersPosition = Console.ReadLine();;
-            allDossier[usersfullName] = usersPosition;
+            string fullName = Console.ReadLine();
+            string employeePosition = Console.ReadLine();;
+            employees[fullName] = employeePosition;
         }
 
-        static void PrintDossieList(Dictionary<string, string> allDossier)
+        static void PrintDossieList(Dictionary<string, string> employees)
         {
-            Console.Clear();
-
-            foreach (var Dossier in allDossier)
+            foreach (var employee in employees)
             {
-                Console.WriteLine(Dossier.Value + " - " + Dossier.Key);
+                Console.WriteLine(employee.Value + " - " + employee.Key);
             }
             Console.WriteLine("Нажмите любую кнопку, чтобы вернуться в меню.");
             Console.ReadKey();
         }
 
-        static void DeleteDossier(Dictionary<string, string> allDossier)
+        static void DeleteDossier(Dictionary<string, string> employees)
         {
-            Console.Clear();
             Console.WriteLine("Введите ФИО для удаления досье: ");
-            string lastName = Console.ReadLine();
-            allDossier.Remove(lastName);
+            string employeeFullName = Console.ReadLine();
+            employees.Remove(employeeFullName);
         }
     }
 }
