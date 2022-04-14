@@ -32,11 +32,11 @@ namespace Task4
                         break;
 
                     case '2':
-                        PrintDossieList(employees);
+                        PrintEmployees(employees);
                         break;
 
                     case '3':
-                        DeleteDossier(employees);
+                        DeleteEmployee(employees);
                         break;
 
                     case '0':
@@ -60,7 +60,7 @@ namespace Task4
             employees[fullName] = employeePosition;
         }
 
-        static void PrintDossieList(Dictionary<string, string> employees)
+        static void PrintEmployees(Dictionary<string, string> employees)
         {
             foreach (var employee in employees)
             {
@@ -70,7 +70,7 @@ namespace Task4
             Console.ReadKey();
         }
 
-        static void DeleteDossier(Dictionary<string, string> employees)
+        static void DeleteEmployee(Dictionary<string, string> employees)
         {
             Console.WriteLine("Введите ФИО для удаления досье: ");
             string employeeFullName = Console.ReadLine();
