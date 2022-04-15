@@ -11,16 +11,16 @@ namespace Task1
         static void Main(string[] args)
         {
             Player player1 = new Player(100, 15, 80, 90);
-            player1.ShowPlayerInfo(50, 13, 34, 60);
+            player1.ShowInfo(50, 13, 34, 60);
         }
     }
 
     class Player
     {
-        private int _maxHealth = 100;
-        private int _maxDamage = 20;
-        private int _maxAtackDistance = 100;
-        private int _maxMana = 100;
+        private int _maxHealth;
+        private int _maxDamage;
+        private int _maxAtackDistance;
+        private int _maxMana;
 
         public Player (int health, int damage, int maxAtackDistance, int maxMana)
         {
@@ -30,11 +30,7 @@ namespace Task1
             _maxMana = maxMana;
         }
 
-        public Player()
-        {
-        }
-
-        public void ShowPlayerInfo(int health, int damage, int maxAtackDistance, int maxMana)
+        public void ShowInfo(int health, int damage, int maxAtackDistance, int maxMana)
         {
             Console.WriteLine($"health: {health}/{_maxHealth};\ndamage: {damage}/{_maxDamage};\natack distance: {maxAtackDistance}/{_maxAtackDistance};\nmana: {maxMana}/{_maxMana}");
         }
