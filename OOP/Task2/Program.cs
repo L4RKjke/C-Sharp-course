@@ -14,17 +14,8 @@ namespace Task2
 
     class Player
     {
-        public int PositionX
-        {
-            get;
-            private set;
-        } = 5;
-
-        public int PositionY
-        {
-            get;
-            private set;
-        } = 2;
+        public int PositionX {get; private set;} = 5;
+        public int PositionY{get; private set;} = 2;
     }
 
     class Renderer
