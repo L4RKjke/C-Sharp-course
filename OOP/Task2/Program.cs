@@ -8,7 +8,6 @@ namespace Task2
         {
             Player player1 = new Player();
             Renderer drawPlayer1 = new Renderer();
-
             drawPlayer1.RenderPosition(player1.PositionX, player1.PositionY);
         }
     }
@@ -20,6 +19,7 @@ namespace Task2
             get;
             private set;
         } = 5;
+
         public int PositionY
         {
             get;
