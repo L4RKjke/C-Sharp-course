@@ -29,9 +29,9 @@ namespace Task2
 
     class Renderer
     {
-        public void RenderPosition(int PositionX, int PositionY)
+        public void RenderPosition(int positionX, int positionY)
         {
-            Console.SetCursorPosition(PositionX, PositionY);
+            Console.SetCursorPosition(positionX, positionY);
             Console.WriteLine("/ (-)(-) \\");
         }
     }
