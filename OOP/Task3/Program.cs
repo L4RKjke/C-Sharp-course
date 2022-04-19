@@ -7,8 +7,8 @@ namespace Task3
     {
         static void Main(string[] args)
         {
-            GameMenager maneger = new GameMenager();
-            maneger.StartMenu();
+            GameMenager menager = new GameMenager();
+            menager.StartMenu();
         }
     }
 
