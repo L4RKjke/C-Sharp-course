@@ -7,17 +7,17 @@ namespace Task3
     {
         static void Main(string[] args)
         {
-            GameMenager meneger = new GameMenager();
-            meneger.StartMenu();
+            GameAdministration gameManagement = new GameAdministration();
+            gameManagement.StartMenu();
         }
     }
 
-    class GameMenager
+    class GameAdministration
     {
         private bool _isClose = false;
         private DataBase _data = new DataBase();
 
-        private enum _action
+        private enum Action
         {
             Delete,
             Ban,
@@ -108,19 +108,19 @@ namespace Task3
         private void DeleteUser()
         {
             Console.Write("Введите id для игрока, которого хотите удалить: ");
-            SelectPlayer(Console.ReadLine(), _action.Delete);
+            SelectPlayer(Console.ReadLine(), Action.Delete);
         }
 
         private void BanUser()
         {
             Console.Write("Введите id для игрока, которого хотите забанить: ");
-            SelectPlayer(Console.ReadLine(), _action.Ban);
+            SelectPlayer(Console.ReadLine(), Action.Ban);
         }
 
         private void UnbanUser()
         {
             Console.Write("Введите id для игрока, которого хотите разбанить: ");
-            SelectPlayer(Console.ReadLine(), _action.Unban);
+            SelectPlayer(Console.ReadLine(), Action.Unban);
         }
 
         private void ShowAllPlayers()
@@ -128,13 +128,13 @@ namespace Task3
             _data.ShowInfo();
         }
 
-        private void SelectPlayer(string id, GameMenager._action action)
+        private void SelectPlayer(string id, GameAdministration.Action action)
         {
             if (int.TryParse(id, out int res) && res >= 0)
             {
                 int userId = res;
 
-                if (TryGetPlayerIndex(userId, out int result))
+                if (_data.TryGetPlayerIndex(userId, out int result))
                 {
                     SwitchAction(result, action);
                 }
@@ -149,36 +149,30 @@ namespace Task3
             }
         }
 
-        private void SwitchAction(int id, GameMenager._action action)
+        private void SwitchAction(int id, GameAdministration.Action action)
         {
             switch (action)
             {
-                case GameMenager._action.Delete:
+                case GameAdministration.Action.Delete:
                     _data.RemovePlayer(id);
                     break;
 
-                case GameMenager._action.Ban:
+                case GameAdministration.Action.Ban:
                     _data.UnbanPlayer(id);
                     break;
 
-                case GameMenager._action.Unban:
+                case GameAdministration.Action.Unban:
                     _data.BanPlayer(id);
                     break;
             }
         }
-
-        private bool TryGetPlayerIndex(int userId, out int result)
-        {
-                result = userId;
-                return _data.UserIdList.Contains(userId);
-        }
     }
+
     class DataBase
     {
         private Dictionary<int, Player> _playersData = new Dictionary<int, Player>();
         private int _userId;
-
-        public List<int> UserIdList { get; private set; } = new List<int>();
+        private List<int> UserIdList = new List<int>();
 
         public void AddPlayer(string name, int level, bool isBanned)
         {
@@ -195,12 +189,12 @@ namespace Task3
 
         public void BanPlayer(int userId)
         {
-            _playersData[userId].BanUser(true);
+            _playersData[userId].BanUser();
         }
 
         public void UnbanPlayer(int userId)
         {
-            _playersData[userId].BanUser(false);
+            _playersData[userId].UnbanUser();
         }
 
         public void ShowInfo ()
@@ -209,6 +203,12 @@ namespace Task3
             {
                 Console.WriteLine($"id: {id}, { _playersData[id].ShowPlayerInfo()}");
             }
+        }
+
+        public bool TryGetPlayerIndex(int userId, out int result)
+        {
+            result = userId;
+            return UserIdList.Contains(userId);
         }
     }
 
@@ -225,12 +225,14 @@ namespace Task3
             _isBanned = isBanned;
         }
 
-        public void BanUser(bool status)
+        public void BanUser()   
         {
-            if (status) 
-                _isBanned = false;
-            else
-                _isBanned = true;
+            _isBanned = true;
+        }
+
+        public void UnbanUser()
+        {
+            _isBanned = false;
         }
 
         public string ShowPlayerInfo()
