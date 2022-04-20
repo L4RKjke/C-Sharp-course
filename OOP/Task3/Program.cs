@@ -7,8 +7,8 @@ namespace Task3
     {
         static void Main(string[] args)
         {
-            GameMenager menager = new GameMenager();
-            menager.StartMenu();
+            GameMenager meneger = new GameMenager();
+            meneger.StartMenu();
         }
     }
 
@@ -16,6 +16,13 @@ namespace Task3
     {
         private bool _isClose = false;
         private DataBase _data = new DataBase();
+
+        private enum _action
+        {
+            Delete,
+            Ban,
+            Unban
+        }
 
         public void StartMenu()
         {
@@ -29,7 +36,7 @@ namespace Task3
             }
         }
 
-        public void SelectComand()
+        private void SelectComand()
         {
             char menuComand = Convert.ToChar(Console.ReadKey(true).Key);
             Console.Clear();
@@ -68,18 +75,18 @@ namespace Task3
             }
         }
 
-        public void DrawMenu()
+        private void DrawMenu()
         {
-        Console.WriteLine("Меню\n");
-        Console.WriteLine("1 - Добавить игрока\n");
-        Console.WriteLine("2 - Удалить игрока\n");
-        Console.WriteLine("3 - Забанить игрока\n");
-        Console.WriteLine("4 - Разбанить игрока\n");
-        Console.WriteLine("5 - Вывести список всех игроков\n");
-        Console.WriteLine("0 - Выход\n");
+            Console.WriteLine("Меню\n");
+            Console.WriteLine("1 - Добавить игрока\n");
+            Console.WriteLine("2 - Удалить игрока\n");
+            Console.WriteLine("3 - Забанить игрока\n");
+            Console.WriteLine("4 - Разбанить игрока\n");
+            Console.WriteLine("5 - Вывести список всех игроков\n");
+            Console.WriteLine("0 - Выход\n");
         }
 
-        public void AddNewUser()
+        private void AddNewUser()
         {
             Console.WriteLine("Введите данные для добавления нового игрока: \n");
             Console.Write("Никнейм: ");
@@ -91,55 +98,99 @@ namespace Task3
                 Console.Write("Статус игрока (true - забанен, false - не забанен): ");
                 bool banStatus = (Convert.ToBoolean(Console.ReadLine()));
                 _data.AddPlayer(name, result, banStatus);
-            }        
+            }
             else
             {
                 Console.WriteLine("Уровень должен быть целым числом больше 0!");
             }
         }
 
-        public void DeleteUser()
+        private void DeleteUser()
         {
             Console.Write("Введите id для игрока, которого хотите удалить: ");
-            int userId = Convert.ToInt32(Console.ReadLine());
-            _data.RemovePlayer(userId);
+            SelectPlayer(Console.ReadLine(), _action.Delete);
         }
 
-        public void BanUser()
+        private void BanUser()
         {
             Console.Write("Введите id для игрока, которого хотите забанить: ");
-            int userId = Convert.ToInt32(Console.ReadLine());
-            _data.BanPlayer(userId);
+            SelectPlayer(Console.ReadLine(), _action.Ban);
         }
 
-        public void UnbanUser()
+        private void UnbanUser()
         {
             Console.Write("Введите id для игрока, которого хотите разбанить: ");
-            int userId = Convert.ToInt32(Console.ReadLine());
-            _data.UnbanPlayer(userId);
+            SelectPlayer(Console.ReadLine(), _action.Unban);
         }
 
-        public void ShowAllPlayers()
+        private void ShowAllPlayers()
         {
             _data.ShowInfo();
         }
-    }
 
+        private void SelectPlayer(string id, GameMenager._action action)
+        {
+            if (int.TryParse(id, out int res) && res >= 0)
+            {
+                int userId = res;
+
+                if (TryGetPlayerIndex(userId, out int result))
+                {
+                    SwitchAction(result, action);
+                }
+                else
+                {
+                    Console.WriteLine("Id с таким значением не найдено!");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Введите целое пложительное число!");
+            }
+        }
+
+        private void SwitchAction(int id, GameMenager._action action)
+        {
+            switch (action)
+            {
+                case GameMenager._action.Delete:
+                    _data.RemovePlayer(id);
+                    break;
+
+                case GameMenager._action.Ban:
+                    _data.UnbanPlayer(id);
+                    break;
+
+                case GameMenager._action.Unban:
+                    _data.BanPlayer(id);
+                    break;
+            }
+        }
+
+        private bool TryGetPlayerIndex(int userId, out int result)
+        {
+                result = userId;
+                return _data.UserIdList.Contains(userId);
+        }
+    }
     class DataBase
     {
         private Dictionary<int, Player> _playersData = new Dictionary<int, Player>();
         private int _userId;
 
+        public List<int> UserIdList { get; private set; } = new List<int>();
+
         public void AddPlayer(string name, int level, bool isBanned)
         {
             _playersData[_userId] = (new Player(name, level, isBanned));
+            UserIdList.Add(_userId);
             _userId++;
         }
 
         public void RemovePlayer(int userId)
         {
             _playersData.Remove(userId);
-
+            UserIdList.Remove(userId);
         }
 
         public void BanPlayer(int userId)
@@ -177,9 +228,9 @@ namespace Task3
         public void BanUser(bool status)
         {
             if (status) 
-                _isBanned = true;
-            else
                 _isBanned = false;
+            else
+                _isBanned = true;
         }
 
         public string ShowPlayerInfo()
