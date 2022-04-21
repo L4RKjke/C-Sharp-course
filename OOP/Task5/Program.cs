@@ -182,19 +182,15 @@ namespace Task5
                 }
                 else if (searchParameter == "all")
                 {
-                    Console.WriteLine($"{book.BookName}, athor: {book.Author}, release year: {book.ReleaseYear}");
+                    Console.WriteLine($"id: {_bookId} | {book.BookName}, athor: {book.Author}, release year: {book.ReleaseYear}");
                 }
             }   
         }
 
         public void ShowBooks(int searchParameter)
         {
-            _bookId = 0;
-
             foreach (Book book in _books)
             {
-                _bookId++;
-
                 if (searchParameter == book.ReleaseYear)
                 {
                     Console.WriteLine($"{book.BookName}, athor: {book.Author}, release year: {book.ReleaseYear}");
