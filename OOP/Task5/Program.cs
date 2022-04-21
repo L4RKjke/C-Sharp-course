@@ -108,29 +108,15 @@ namespace Task5
             switch (searchComand)
             {
                 case '1':
-                    Console.Write("Введите название книги: ");
-                    string nameToSearch = Console.ReadLine();
-                    ShowSearchedBooks(nameToSearch);
+                    NameSearch();
                     break;
 
                 case '2':
-                    Console.Write("Введите автора книги: ");
-                    string authorToSearch = Console.ReadLine();
-                    ShowSearchedBooks(authorToSearch);
+                    AuthorSearch();
                     break;
 
                 case '3':
-                    Console.Write("Введите год выпуска книги книги: ");
-                    string yearToSearch = Console.ReadLine();
-
-                    if (int.TryParse(yearToSearch, out int year) && year > 0 && year < _currentYear)
-                    {
-                        ShowSearchedBooks(yearToSearch);
-                    }
-                    else
-                    {
-                        Console.WriteLine("Год может быть числом от 0 до текущего!");
-                    }
+                    YearReleasedSearch();
                     break;
             }
         }
@@ -141,6 +127,36 @@ namespace Task5
             Console.WriteLine("Чтобы продолжить нажмите любую кнопку...");
             Console.ReadKey(true);
         }
+
+        private void NameSearch()
+        {
+            Console.Write("Введите название книги: ");
+            string nameToSearch = Console.ReadLine();
+            ShowSearchedBooks(nameToSearch);
+        }
+
+        private void AuthorSearch()
+        {
+            Console.Write("Введите автора книги: ");
+            string authorToSearch = Console.ReadLine();
+            ShowSearchedBooks(authorToSearch);
+        }
+
+        private void YearReleasedSearch()
+        {
+            Console.Write("Введите год выпуска книги книги: ");
+            string yearToSearch = Console.ReadLine();
+
+            if (int.TryParse(yearToSearch, out int year) && year > 0 && year < _currentYear)
+            {
+                ShowSearchedBooks(yearToSearch);
+            }
+            else
+            {
+                Console.WriteLine("Год может быть числом от 0 до текущего!");
+            }
+        }
+
     }
 
     class BookStorage
@@ -171,30 +187,18 @@ namespace Task5
             foreach (Book book in _books)
             {
                 _bookId++;
-
-                if (searchParameter == book.BookName)
-                {
-                    Console.WriteLine($"{book.BookName}, athor: {book.Author}, release year: {book.ReleaseYear}");
-                }
-                else if (searchParameter == book.Author)
-                {
-                    Console.WriteLine($"{book.BookName}, athor: {book.Author}, release year: {book.ReleaseYear}");
-                }
-                else if (searchParameter == "all")
-                {
-                    Console.WriteLine($"id: {_bookId} | {book.BookName}, athor: {book.Author}, release year: {book.ReleaseYear}");
-                }
+                VerifySearchParameter(searchParameter, book.BookName, book);
+                VerifySearchParameter(searchParameter, book.Author, book);
+                VerifySearchParameter(searchParameter, Convert.ToString(book.ReleaseYear), book);
+                VerifySearchParameter(searchParameter, "all", book);
             }   
         }
 
-        public void ShowBooks(int searchParameter)
+        private void VerifySearchParameter(string bookValue, string searchParameter, Book book)
         {
-            foreach (Book book in _books)
+            if (searchParameter == bookValue)
             {
-                if (searchParameter == book.ReleaseYear)
-                {
-                    Console.WriteLine($"{book.BookName}, athor: {book.Author}, release year: {book.ReleaseYear}");
-                }
+                Console.WriteLine($"id: {_bookId} | {book.BookName}, author: {book.Author}, release year: {book.ReleaseYear}");
             }
         }
     }
