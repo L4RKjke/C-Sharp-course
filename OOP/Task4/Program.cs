@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Task4
 {
@@ -10,54 +8,79 @@ namespace Task4
     {
         static void Main(string[] args)
         {
-            CardGame test = new CardGame();
-            test.Game();
+            CardGame game = new CardGame();
+            game.OpenMenu();
         }
     }
 
     class CardGame
     {
-        private Deck _deck;
-        private Player _player;
-        private Card _card;
+        private Deck _deck = new Deck();
+        private Player _player = new Player();
+        private bool _isClose = false;
+        private int numberOfplayerCards;
 
-        public void Game()
+        public void OpenMenu()
         {
-            bool isPlaying = true;
             _deck.GenerateDeck();
-            while (isPlaying == true)
+
+            while (_isClose == false)
             {
                 Console.Clear();
-                Console.WriteLine($"Взять карту - 1, 2 - Показать карты, которые были вытянуты");
-                char command = Convert.ToChar(Console.ReadKey(true).Key);
-
-                switch (command)
-                {
-                    case '1':
-                        _player.AddCard();
-                        _deck.RemoveCard();
-
-                        break;
-
-                    case '2':
-
-                        _player.ShowPlayerCards();
-                        Console.WriteLine("Чтобы продолжить нажмите любую кнопку...");
-                        Console.ReadKey(true);
-                        isPlaying = false;
-                        break;
-
-                    default:
-                        break;
-                }
+                Console.WriteLine("1 - взять карту, 2 - посмотреть свои карты, 3 - закончить игру");
+                SelectCommand();
             }
+        }
+
+        private void SelectCommand()
+        {
+            char menuComand = Convert.ToChar(Console.ReadKey(true).Key);
+            Console.Clear();
+
+            switch (menuComand)
+            {
+                case '1':
+                    DrawCard();
+                    break;
+
+                case '2':
+                    LookAtTheCard();
+                    break;
+
+                case '3':
+                    _isClose = true;
+                    break;
+            }
+        }
+
+        private void DrawCard()
+        {
+            numberOfplayerCards++;
+
+            if (numberOfplayerCards <= _deck.MaxCardsInDeck)
+            {
+                _player.AddCard(_deck.RemoveCard());
+            }
+            else
+            {
+                Console.WriteLine("В колоде больше нету карт");
+                Console.WriteLine("Нажмите любую кнопку...");
+                Console.ReadKey(true);
+            }
+        }
+
+        private void LookAtTheCard()
+        {
+            _player.ShowPlayerCards();
+            _player.RemoveCards();
+            Console.WriteLine("Нажмите любую кнопку...");
+            Console.ReadKey(true);
         }
     }
 
     class Deck
     {
         private int _specificСardType = 0;
-        private int _maxCardsInDeck = 36;
         private string _randomCard;
         private int _maxNumberOfSameType = 4;
         private Stack<Card> _cards = new Stack<Card>();
@@ -75,8 +98,10 @@ namespace Task4
             {"Туз", 11}
         };
 
+        public int MaxCardsInDeck { get; private set; } = 36;
+
         public void AddCard(string name, int value)
-        { 
+        {
             _cards.Push(new Card(name, value));
         }
 
@@ -85,25 +110,17 @@ namespace Task4
             return _cards.Pop();
         }
 
-        public void ShowAllCards()
-        {
-            foreach (Card card in _cards)
-            {
-                Console.WriteLine(card.ShowCard());
-            }
-        }
-
         public void GenerateDeck()
         {
             Random random = new Random();
-            while (_cards.Count() < _maxCardsInDeck)
+            while (_cards.Count() < MaxCardsInDeck)
             {
-                int c = 0;
+                int cardCounter = 0;
 
                 foreach (var card in _deck)
                 {
 
-                    if (c == random.Next(0, 9))
+                    if (cardCounter == random.Next(0, 9))
                     {
                         _randomCard = card.Key;
                         _specificСardType = 0;
@@ -122,7 +139,7 @@ namespace Task4
                             _cardsNames.Add(_randomCard);
                         }
                     }
-                    c++;
+                    cardCounter++;
                 }
             }
         }
@@ -130,19 +147,14 @@ namespace Task4
 
     class Card
     {
-        public string _name { get; private set; }
-        
-        public int _cardValue { get; private set; }
+        public string Name { get; private set; }
+
+        public int CardValue { get; private set; }
 
         public Card(string name, int cardValue)
         {
-            _name = name;
-            _cardValue = cardValue;
-        }
-
-        public string ShowCard()
-        {
-            return ($"{_name}, {_cardValue}");
+            Name = name;
+            CardValue = cardValue;
         }
     }
 
@@ -165,7 +177,7 @@ namespace Task4
         {
             foreach (var card in _playerCards)
             {
-                Console.WriteLine(card.ShowCard());
+                Console.WriteLine($"{card.Name}, {card.CardValue}");
             }
         }
     }
