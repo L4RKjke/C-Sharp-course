@@ -17,20 +17,24 @@ namespace Task6
 
     class Shop
     {
-        private Seller seller = new Seller();
-        private Customer customer = new Customer();
-        private bool IsClose = false;
-        private List<Product> products = new List<Product>();
+        private Seller _seller = new Seller(new List<Product>()
+            {
+                new Product("сливки", 60),
+                new Product("молоко", 80),
+                new Product("кефир", 35)
+            });
+        private Customer _customer = new Customer();
+        private bool _isClose = false;
 
         public void OpenShop()
         {
             Console.CursorVisible = false;
 
-            while (IsClose == false)
+            while (_isClose == false)
             {
                 Console.Clear();
                 Console.WriteLine("1 - купить продукт, 2 - выйти из магазин, 3 - вывести список купленных товаров\n");
-                seller.ShowProducts();
+                _seller.ShowUserProducts();
                 SelectComand();
             }
         }
@@ -46,11 +50,11 @@ namespace Task6
                     break;
 
                 case '2':
-                    IsClose = true;
+                    _isClose = true;
                     break;
 
                 case '3':
-                    customer.ShowCustomerProducts();
+                    ShowPurchasedProducts();
                     break;
 
                 default:
@@ -63,77 +67,72 @@ namespace Task6
             Console.Write("\nНапишите номер продукта, который вы хотите купить: ");
             string UserInput = Console.ReadLine();
 
-            if (int.TryParse(UserInput, out int numberOfProduct) && numberOfProduct <= seller.GetLength())
+            if (int.TryParse(UserInput, out int numberOfProduct) && numberOfProduct <= _seller.GetLength())
             {
-                seller.GetProducts().RemoveAt(numberOfProduct - 1);
-                customer.BuyProduct(numberOfProduct);
+                _customer.BuyProduct(_seller.SellProduct(numberOfProduct - 1));
             }
             else
-            { 
+            {
                 throw new Exception("некорректный номер команды!");
             }
         }
-    }
 
-    class Customer
-    {
-        private List<Product> _customerList = new List<Product>();
-        private Seller Shop = new Seller();
-
-        public void BuyProduct(int id)
-        {
-            _customerList.Add(Shop.SellProduct(id - 1));
-        }
-
-        public void ShowCustomerProducts()
+        private void ShowPurchasedProducts()
         {
             Console.Clear();
-
-            foreach (var product in _customerList)
-            {
-                Console.WriteLine($"{ product.Name}");
-            }
-
+            _customer.ShowUserProducts();
             Console.ReadKey(true);
         }
     }
 
-    class Seller
+    class User
     {
-        private List<Product> _productList =  new List<Product>();
+        protected List<Product> _productList = new List<Product>();
 
-        public Seller()
+        public User (List<Product>  productList)
         {
-            _productList.Add(new Product("молоко", 80));
-            _productList.Add(new Product("кефир", 50));
-            _productList.Add(new Product("сливки", 100));
+            _productList = productList;
         }
 
-        public Product SellProduct(int id)
-        {
-            Product product = _productList[id];
+        public User(){}
 
-            return product;
-        }
-
-        public List<Product> GetProducts()
-        {
-            return _productList;
-        }
-
-        public int GetLength()
-        {
-            return _productList.Count();
-        }
-
-        public void ShowProducts()
+        public void ShowUserProducts()
         {
             int id = 1;
 
             foreach (var product in _productList)
             {
-                Console.WriteLine($"{id++} ) { product.Name}, цена: { product.Price}");
+                Console.WriteLine($"{id++}) { product.Name}, {product.Price}");
             }
+        }
+    }
+
+    class Customer: User
+    {
+        public Customer() : base() { }
+ 
+        public void BuyProduct(Product product)
+        {
+            _productList.Add(product);
+        }
+    }
+
+    class Seller: User
+    {
+        public Seller(List<Product> productList) : base(productList) { }
+
+        public Seller() : base() { }
+
+        public Product SellProduct(int id)
+        {
+            Product product = _productList[id];
+            _productList.RemoveAt(id);
+            return product;
+        }
+
+        public int GetLength()
+        {
+            return _productList.Count();
         }
     }
 
