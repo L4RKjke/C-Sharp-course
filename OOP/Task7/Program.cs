@@ -15,21 +15,12 @@ namespace Task7
 
     class PlanMaker
     {
-        private List<Wagon> _wagons = new List<Wagon>();
-        private List<Flight> _flights = new List<Flight>();
-        private SmallWagon _smallWagon = new SmallWagon();
-        private BigWagon _bigWagon = new BigWagon();
-        private Random _random = new Random();
-        private Flight _flightOfTheTrain;
-        private Flights _trainFlights;
-        private Train _train;
+        private List<Train> _flights = new List<Train>();
         private string _pointOfDeparture;
         private string _trainArrivalPoint;
-        private bool _isClose = false;
+        private int _numberOfPessengers;
         private bool _isFirsteTrainDeparted = false;
-        private int minPessangers = 32;
-        private int maxPessangers = 540;
-        private int _numberOfPessengers = 0;
+        private bool _isClose = false;
 
         public void StartMenu()
         {
@@ -39,13 +30,10 @@ namespace Task7
             {
                 Console.Clear();
 
-                if (ShowFlights() != null)
-                {
-                    foreach (var flight in ShowFlights())
-                    {
-                        Console.WriteLine(flight);
-                    }
-                }
+                if (_isFirsteTrainDeparted)
+                    foreach (var train in _flights)
+                        train.ShowInfo();
+
                 CreateTrainDirection();
                 GenerateNumbersOfPessangers();
                 SeatPeople();
@@ -66,7 +54,10 @@ namespace Task7
 
         private void GenerateNumbersOfPessangers()
         {
-            _numberOfPessengers = _random.Next(minPessangers, maxPessangers);
+            Random random = new Random();
+            int minPessangers = 32;
+            int maxPessangers = 540;
+            _numberOfPessengers = random.Next(minPessangers, maxPessangers);
             Console.WriteLine("\nКуплено билетов: " + _numberOfPessengers);
             Console.WriteLine("\nНажмите любую кнопку, чтобы продолжить...");
             Console.ReadKey(true);
@@ -86,161 +77,73 @@ namespace Task7
                     break;
 
                 default:
-                    throw new Exception("некорректный номер команды!");
+                    Console.WriteLine("некорректный номер команды!");
+                    break;
             }
         }
 
         private void SeatPeople()
         {
+            List<Wagon> wagons = new List<Wagon>();
             int passengersLeft = _numberOfPessengers;
+            int smallWagonMaxPlaces = 36;
+            int bigWagonMaxPlaces = 54;
 
             while (passengersLeft > 0)
             {
-                if (passengersLeft <= _smallWagon.MaxPlaces)
+                if (passengersLeft <= smallWagonMaxPlaces)
                 {
-                    _wagons.Add(new SmallWagon(passengersLeft));
+                    wagons.Add(new Wagon(passengersLeft));
                     passengersLeft -= passengersLeft;
                 }
-                else if (passengersLeft <= _bigWagon.MaxPlaces)
+                else if (passengersLeft <= bigWagonMaxPlaces)
                 {
-                    _wagons.Add(new BigWagon(passengersLeft));
+                    wagons.Add(new Wagon(passengersLeft));
                     passengersLeft -= passengersLeft;
                 }
                 else
                 {
-                    _wagons.Add(new BigWagon(_bigWagon.MaxPlaces));
-                    passengersLeft -= _bigWagon.MaxPlaces;
+                    wagons.Add(new Wagon(bigWagonMaxPlaces));
+                    passengersLeft -= bigWagonMaxPlaces;
                 }
             }
-            _train = new Train(new List<Wagon>(_wagons));
-            _wagons.Clear();
+            _flights.Add(new Train(new List<Wagon>(wagons), string.Concat(_pointOfDeparture, " - ", _trainArrivalPoint), _numberOfPessengers)); 
+            wagons.Clear();
         }
 
         private void SendTrain()
         {
-            _flightOfTheTrain = new Flight(string.Concat(_pointOfDeparture, " - ", _trainArrivalPoint), _train.GetSumOfPessengers());
-            _flights.Add(_flightOfTheTrain);
-            _trainFlights = new Flights(new List<Flight>(_flights));
-            _isFirsteTrainDeparted = true;
-        }
-
-        private List<string> ShowFlights()
-        {
-            if (_isFirsteTrainDeparted)
-                return _trainFlights.ShowFlights();  
-            else
-                return null;
-        }
-    }
-
-    class Flights
-    {
-        private List<Flight> _flights = new List<Flight>();
-
-        public Flights(List<Flight> flight)
-        {
-            _flights = flight;
-        }
-
-        public List<string> ShowFlights()
-        {
-            List<string> flights = new List<string>();
-
-            foreach (var flight in _flights)
-            {
-                flights.Add($"Маршрут: {flight.RaceName}, пассажиров в поезде: {flight.Pessangers}");
-            }
-
-            return flights;
-        }
-
-        public int GetNumberOfRaces()
-        {
-            return _flights.Count();
-        }
-    }
-
-    class Flight
-    {
-        public string RaceName { get; private set; }
-
-        public int Pessangers { get; private set; }
-
-        public Flight() { }
-
-        public Flight(string raceName, int pessangers)
-        {
-            RaceName = raceName;
-            Pessangers = pessangers;
+            if (_isFirsteTrainDeparted == false)
+                _isFirsteTrainDeparted = true;
         }
     }
 
     class Train
     {
-        private List<Wagon> _wagons = new List<Wagon>();
+        private List<Wagon> _wagons;
+        private string _flightName;
+        private int _pessangers;
 
-        public Train(List<Wagon> wagons)
+        public Train(List<Wagon> wagons, string flightName, int pessangers)
         {
             _wagons = wagons;
+            _flightName = flightName;
+            _pessangers = pessangers;
         }
 
-        public Train() { }
-
-        public void ShowWagons()
+        public void ShowInfo()
         {
-            foreach (var wagon in _wagons)
-            {
-                Console.WriteLine(wagon.Places);
-            }
-        }
-
-        public int GetSumOfPessengers()
-        {
-            int sum = 0;
-
-            foreach (var wagon in _wagons)
-            {
-                sum += wagon.Places;
-            }
-            return sum;
-        }
+            Console.WriteLine($"Рейс: {_flightName}, пассажиров: {_pessangers}, вагонов: {_wagons.Count()}");
+        }   
     }
 
     class Wagon
     {
-        public int Places { get; protected set; }
+        private int _places;
 
         public Wagon(int places)
         {
-            Places = places;
+            _places = places;
         }
-
-        public Wagon()
-        {
-        }
-    }
-
-    class SmallWagon : Wagon
-    {
-        public int MaxPlaces { get; private set; } = 36;
-
-        public SmallWagon(int places) : base(places)
-        {
-            Places = places;
-        }
-
-        public SmallWagon() : base() { }
-    }
-
-    class BigWagon : Wagon
-    {
-        public int MaxPlaces { get; private set; } = 54;
-
-        public BigWagon(int places) : base(places)
-        {
-            Places = places;
-        }
-
-        public BigWagon() : base(){}
     }
 }
