@@ -46,7 +46,7 @@ namespace Task7
                         Console.WriteLine(flight);
                     }
                 }
-                СreateTrainDirection();
+                CreateTrainDirection();
                 GenerateNumbersOfPessangers();
                 SeatPeople();
                 SendTrain();
@@ -55,7 +55,7 @@ namespace Task7
             }
         }
 
-        private void СreateTrainDirection()
+        private void CreateTrainDirection()
         {
             Console.WriteLine("\nЗадать направление для поезда\n");
             Console.Write("Точка отправления воезда: ");
