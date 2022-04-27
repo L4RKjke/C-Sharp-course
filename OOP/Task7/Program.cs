@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Task7
 {
@@ -139,9 +137,9 @@ namespace Task7
     {
         private List<Flight> _flights = new List<Flight>();
 
-        public Flights(List<Flight> races)
+        public Flights(List<Flight> flight)
         {
-            _flights = races;
+            _flights = flight;
         }
 
         public List<string> ShowFlights()
