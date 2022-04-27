@@ -162,9 +162,9 @@ namespace Task7
 
     class Flight
     {
-        public string RaceName { get; protected set; }
+        public string RaceName { get; private set; }
 
-        public int Pessangers { get; protected set; }
+        public int Pessangers { get; private set; }
 
         public Flight() { }
 

@@ -6,3 +6,11 @@ C:\Users\niktr\Desktop\VisualStudio\OOP\Task7\obj\Debug\Task7.csproj.SuggestedBi
 C:\Users\niktr\Desktop\VisualStudio\OOP\Task7\obj\Debug\Task7.csproj.CoreCompileInputs.cache
 C:\Users\niktr\Desktop\VisualStudio\OOP\Task7\obj\Debug\Task7.exe
 C:\Users\niktr\Desktop\VisualStudio\OOP\Task7\obj\Debug\Task7.pdb
+C:\Users\niktr\OneDrive\Документы\GitHub\test\OOP\Task7\bin\Debug\Task7.exe.config
+C:\Users\niktr\OneDrive\Документы\GitHub\test\OOP\Task7\bin\Debug\Task7.exe
+C:\Users\niktr\OneDrive\Документы\GitHub\test\OOP\Task7\bin\Debug\Task7.pdb
+C:\Users\niktr\OneDrive\Документы\GitHub\test\OOP\Task7\obj\Debug\Task7.csproj.AssemblyReference.cache
+C:\Users\niktr\OneDrive\Документы\GitHub\test\OOP\Task7\obj\Debug\Task7.csproj.SuggestedBindingRedirects.cache
+C:\Users\niktr\OneDrive\Документы\GitHub\test\OOP\Task7\obj\Debug\Task7.csproj.CoreCompileInputs.cache
+C:\Users\niktr\OneDrive\Документы\GitHub\test\OOP\Task7\obj\Debug\Task7.exe
+C:\Users\niktr\OneDrive\Документы\GitHub\test\OOP\Task7\obj\Debug\Task7.pdb
