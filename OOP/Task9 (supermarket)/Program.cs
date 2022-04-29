@@ -84,6 +84,7 @@ namespace Task9__supermarket_
         public decimal GetBasketPrice()
         {
             decimal sum = 0;
+
             foreach (Product product in _basket)
             {
                 sum += product.Price;
