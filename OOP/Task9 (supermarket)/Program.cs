@@ -8,8 +8,8 @@ namespace Task9__supermarket_
     {
         static void Main(string[] args)
         {
-            CashRegister shop = new CashRegister();
-            shop.StartShop();
+            CashRegister CashRegister = new CashRegister();
+            CashRegister.StartShop();
         }
     }
 
