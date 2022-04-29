@@ -6,3 +6,11 @@ C:\Users\niktr\Desktop\VisualStudio\OOP\Task9 (supermarket)\obj\Debug\Task9 (sup
 C:\Users\niktr\Desktop\VisualStudio\OOP\Task9 (supermarket)\obj\Debug\Task9 (supermarket).csproj.CoreCompileInputs.cache
 C:\Users\niktr\Desktop\VisualStudio\OOP\Task9 (supermarket)\obj\Debug\Task9 (supermarket).exe
 C:\Users\niktr\Desktop\VisualStudio\OOP\Task9 (supermarket)\obj\Debug\Task9 (supermarket).pdb
+C:\Users\niktr\OneDrive\Документы\GitHub\test\OOP\Task9 (supermarket)\bin\Debug\Task9 (supermarket).exe.config
+C:\Users\niktr\OneDrive\Документы\GitHub\test\OOP\Task9 (supermarket)\bin\Debug\Task9 (supermarket).exe
+C:\Users\niktr\OneDrive\Документы\GitHub\test\OOP\Task9 (supermarket)\bin\Debug\Task9 (supermarket).pdb
+C:\Users\niktr\OneDrive\Документы\GitHub\test\OOP\Task9 (supermarket)\obj\Debug\Task9 (supermarket).csproj.AssemblyReference.cache
+C:\Users\niktr\OneDrive\Документы\GitHub\test\OOP\Task9 (supermarket)\obj\Debug\Task9 (supermarket).csproj.SuggestedBindingRedirects.cache
+C:\Users\niktr\OneDrive\Документы\GitHub\test\OOP\Task9 (supermarket)\obj\Debug\Task9 (supermarket).csproj.CoreCompileInputs.cache
+C:\Users\niktr\OneDrive\Документы\GitHub\test\OOP\Task9 (supermarket)\obj\Debug\Task9 (supermarket).exe
+C:\Users\niktr\OneDrive\Документы\GitHub\test\OOP\Task9 (supermarket)\obj\Debug\Task9 (supermarket).pdb

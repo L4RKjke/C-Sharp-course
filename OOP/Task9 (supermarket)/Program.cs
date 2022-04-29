@@ -16,6 +16,7 @@ namespace Task9__supermarket_
     class CashRegister
     {
         private Queue<Client> _clients = new Queue<Client>();
+        private decimal _money;
 
         public CashRegister()
         {
@@ -46,6 +47,7 @@ namespace Task9__supermarket_
             {
                 Console.WriteLine($"\nПокупатель {clientNumber++}:");
                 TryToPay();
+                Console.WriteLine("\nДеньги на кассе: " + _money);
             }
         }
 
@@ -57,6 +59,7 @@ namespace Task9__supermarket_
                 _clients.Peek().DeleteRandomProductInBasket();
             }
             Console.WriteLine("Завершил покупку товаров");
+            _money += _clients.Peek().GetBasketPrice();
             _clients.Dequeue();
         }
     }
