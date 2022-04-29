@@ -8,16 +8,16 @@ namespace Task9__supermarket_
     {
         static void Main(string[] args)
         {
-            Shop shop = new Shop();
+            CashRegister shop = new CashRegister();
             shop.StartShop();
         }
     }
 
-    class Shop
+    class CashRegister
     {
         private Queue<Client> _clients = new Queue<Client>();
 
-        public Shop()
+        public CashRegister()
         {
             _clients.Enqueue(new Client(new List<Product>()
         {
