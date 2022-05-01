@@ -1,0 +1,8 @@
+C:\Users\niktr\Desktop\VisualStudio\OOP\Task11_aquarium\bin\Debug\Task11_aquarium.exe.config
+C:\Users\niktr\Desktop\VisualStudio\OOP\Task11_aquarium\bin\Debug\Task11_aquarium.exe
+C:\Users\niktr\Desktop\VisualStudio\OOP\Task11_aquarium\bin\Debug\Task11_aquarium.pdb
+C:\Users\niktr\Desktop\VisualStudio\OOP\Task11_aquarium\obj\Debug\Task11_aquarium.csproj.AssemblyReference.cache
+C:\Users\niktr\Desktop\VisualStudio\OOP\Task11_aquarium\obj\Debug\Task11_aquarium.csproj.SuggestedBindingRedirects.cache
+C:\Users\niktr\Desktop\VisualStudio\OOP\Task11_aquarium\obj\Debug\Task11_aquarium.csproj.CoreCompileInputs.cache
+C:\Users\niktr\Desktop\VisualStudio\OOP\Task11_aquarium\obj\Debug\Task11_aquarium.exe
+C:\Users\niktr\Desktop\VisualStudio\OOP\Task11_aquarium\obj\Debug\Task11_aquarium.pdb
