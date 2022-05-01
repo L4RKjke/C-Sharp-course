@@ -1,0 +1,8 @@
+C:\Users\niktr\Desktop\VisualStudio\OOP\Task12_zoo\bin\Debug\Task12_zoo.exe.config
+C:\Users\niktr\Desktop\VisualStudio\OOP\Task12_zoo\bin\Debug\Task12_zoo.exe
+C:\Users\niktr\Desktop\VisualStudio\OOP\Task12_zoo\bin\Debug\Task12_zoo.pdb
+C:\Users\niktr\Desktop\VisualStudio\OOP\Task12_zoo\obj\Debug\Task12_zoo.csproj.AssemblyReference.cache
+C:\Users\niktr\Desktop\VisualStudio\OOP\Task12_zoo\obj\Debug\Task12_zoo.csproj.SuggestedBindingRedirects.cache
+C:\Users\niktr\Desktop\VisualStudio\OOP\Task12_zoo\obj\Debug\Task12_zoo.csproj.CoreCompileInputs.cache
+C:\Users\niktr\Desktop\VisualStudio\OOP\Task12_zoo\obj\Debug\Task12_zoo.exe
+C:\Users\niktr\Desktop\VisualStudio\OOP\Task12_zoo\obj\Debug\Task12_zoo.pdb
