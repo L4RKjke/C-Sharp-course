@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Task8
 {
@@ -10,8 +6,18 @@ namespace Task8
     {
         static void Main(string[] args)
         {
-            const int NUMBER_OF_FIGHTERS = 5;
-            Fighter[] fighters = new Fighter[NUMBER_OF_FIGHTERS]
+            Arena arena = new Arena();
+            arena.StartBattle();
+        }
+    }
+
+    class Arena
+    {
+        private int _numberOfFighers = 5;
+
+        public void StartBattle()
+        {
+            Fighter[] fighters = new Fighter[5]
                 {
                 new Magician("Маг", 200, 5, 5, 3),
                 new Warrior("Воин", 300, 30, 1, 10),
@@ -19,32 +25,36 @@ namespace Task8
                 new Rogue("Разбойник", 300, 20, 1, 2),
                 new Shaman("Шаман", 200, 8, 4, 30)
                 };
-            ChooseFighters(fighters, out Fighter ForcesOfLight, out Fighter ForcesOfDarkness, NUMBER_OF_FIGHTERS);
+            ChooseFighters(fighters, out Fighter ForcesOfLight, out Fighter ForcesOfDarkness, _numberOfFighers);
         }
 
-        static void ChooseFighters(Fighter[] fighters, out Fighter forcesOfLight, out Fighter forcesOfDarkness, int NUMBER_OF_FIGHTERS)
+        private void ChooseFighters(Fighter[] fighters, out Fighter forcesOfLight, out Fighter forcesOfDarkness, int numberOfFighers)
         {
             for (int i = 0; i < fighters.Length; i++)
             {
                 fighters[i].ShowStats(i + 1);
             }
 
-            VerifyInputFighters(forcesOfLight = null, forcesOfDarkness = null, fighters, NUMBER_OF_FIGHTERS);
+            VerifyInputFighters(forcesOfLight = null, forcesOfDarkness = null, fighters, numberOfFighers);
         }
 
-        static void VerifyInputFighters(Fighter forcesOfLight, Fighter forcesOfDarkness, Fighter[] fighters, int NUMBER_OF_FIGHTERS)
+        private void VerifyInputFighters(Fighter forcesOfLight, Fighter forcesOfDarkness, Fighter[] fighters, int numberOfFighers)
         {
             Console.Write("Боец сил света: ");
             string leftFighter = Console.ReadLine();
             Console.Write("Боец сил тьмы: ");
             string rightFighter = Console.ReadLine();
 
-            if ((int.TryParse(leftFighter, out int leftIndex) && leftIndex > 0 && leftIndex <= NUMBER_OF_FIGHTERS) &&
-                (int.TryParse(rightFighter, out int rightIndex) && rightIndex > 0 && rightIndex <= NUMBER_OF_FIGHTERS))
+            if ((int.TryParse(leftFighter, out int leftIndex) && leftIndex > 0 && leftIndex <= numberOfFighers) &&
+                (int.TryParse(rightFighter, out int rightIndex) && rightIndex > 0 && rightIndex <= numberOfFighers))
             {
                 forcesOfLight = fighters[leftIndex - 1];
                 forcesOfDarkness = fighters[rightIndex - 1];
-                StartFighting(forcesOfLight, forcesOfDarkness);
+
+                if (rightIndex != leftIndex)
+                    StartFighting(forcesOfLight, forcesOfDarkness);
+                else
+                    Console.WriteLine("Нельзя выбирать одинаковых бойцов!");
             }
             else
             {
@@ -53,25 +63,25 @@ namespace Task8
             }
         }
 
-        static void StartFighting(Fighter forcesOfLight, Fighter forcesOfDarkness)
+        private void StartFighting(Fighter forcesOfLight, Fighter forcesOfDarkness)
         {
             Console.Clear();
-            const int CRITICAL_HEALTH = 50;
-            const int LIGHT_FORCES_ID = 1;
-            const int DARKNESS_FORCES_ID = 2;
+            int lightForcesId = 1;
+            int darknessForcesId = 2;
 
             while (forcesOfLight.Health > 0 && forcesOfDarkness.Health > 0)
             {
-                forcesOfLight.TakeDamage(forcesOfDarkness.Damage, forcesOfDarkness.AttackSpeed, forcesOfDarkness.Armor);
-                forcesOfDarkness.TakeDamage(forcesOfLight.Damage, forcesOfLight.AttackSpeed, forcesOfLight.Armor);
-                forcesOfLight.ShowStats(LIGHT_FORCES_ID);
-                forcesOfDarkness.ShowStats(DARKNESS_FORCES_ID);
-                ActivateBonus(forcesOfLight, forcesOfDarkness, CRITICAL_HEALTH);
-                PickTheWinner(forcesOfLight, forcesOfDarkness);
+                forcesOfLight.TakeDamage(forcesOfDarkness.Damage, forcesOfDarkness.AttackSpeed);
+                TryToActivateBonus(forcesOfLight);
+                forcesOfDarkness.TakeDamage(forcesOfLight.Damage, forcesOfLight.AttackSpeed);
+                TryToActivateBonus(forcesOfDarkness);
+                forcesOfLight.ShowStats(lightForcesId);
+                forcesOfDarkness.ShowStats(darknessForcesId);
             }
+            PickTheWinner(forcesOfLight, forcesOfDarkness);
         }
 
-        static void PickTheWinner(Fighter forcesOfLight, Fighter forcesOfDarkness)
+        private void PickTheWinner(Fighter forcesOfLight, Fighter forcesOfDarkness)
         {
             if (forcesOfLight.Health <= 0 && forcesOfDarkness.Health <= 0)
             {
@@ -87,22 +97,19 @@ namespace Task8
             }
         }
 
-        static void ActivateBonus (Fighter forcesOfLight, Fighter forcesOfDarkness, int CRITICAL_HEALTH)
+        private void TryToActivateBonus(Fighter figher)
         {
-            if (forcesOfLight.Health <= CRITICAL_HEALTH)
-            {
-                forcesOfLight.UpСharacter();
-            }
-            if (forcesOfDarkness.Health <= CRITICAL_HEALTH)
-            {
-                forcesOfDarkness.UpСharacter();
-            }
+            if (figher.FightingSpirit == 2)
+                figher.UseActiveAbility();
         }
-    } 
+    }
 
-    class Fighter
+    abstract class Fighter
     {
-        private string _name;
+        protected string _name;
+        protected int _healthChanges;
+
+        public int FightingSpirit { get; protected set; } = 0;
 
         public int Armor { get; protected set; }
 
@@ -111,6 +118,10 @@ namespace Task8
         public int Health { get; protected set; }
 
         public int Damage { get; protected set; }
+
+        public int EnemyDamage { get; protected set; }
+
+        protected Random Random = new Random();
 
         public Fighter(string name, int health, int damage, int attackSpeed, int armor)
         {
@@ -121,10 +132,12 @@ namespace Task8
             Armor = armor;
         }
 
-        public void TakeDamage(int damage, int attackSpeed, int armor)
+        public void TakeDamage(int damage, int attackSpeed)
         {
-            Health -= damage * attackSpeed - armor;
-
+            UsePassiveAbility();
+            _healthChanges = damage * attackSpeed - Armor;
+            EnemyDamage = damage;
+            Health -= _healthChanges;
         }
 
         public void ShowStats(int id)
@@ -132,39 +145,102 @@ namespace Task8
             Console.WriteLine($"{id}) класс: {_name}, здоровье: {Health}, урон: {Damage}, скорость атаки: {AttackSpeed}, броня: {Armor}");
         }
 
-        virtual public void UpСharacter() { }
+        public abstract void UsePassiveAbility();
+
+        public abstract void UseActiveAbility();
+
+        public bool CheckIsBonusActive()
+        {
+            return false;
+        }
     }
 
-    class Magician: Fighter
+    class Magician : Fighter
     {
+
         public Magician(string name, int health, int damage, int atackspeed, int armor) : base(name, health, damage, atackspeed, armor) { }
 
-        override public void UpСharacter()
+        override public void UsePassiveAbility()
         {
-            const int HEALTH_BUFFER = 20;
-            Health += HEALTH_BUFFER;
+            int abilityChance = 40;
+
+            if (Random.Next(1, 101) < abilityChance)
+            {
+                Health += _healthChanges;
+                FightingSpirit++;
+            }
+        }
+
+        override public void UseActiveAbility()
+        {
+            Console.Write($"{_name} ... Лечение!\n");
+            int healthBonus = 100;
+            Health += healthBonus;
+            FightingSpirit = 0;
         }
     }
 
     class Warrior : Fighter
     {
-        public Warrior(string name, int health, int damage, int atackspeed, int armor) : base(name, health, damage, atackspeed, armor) { }
+        private int _extraDamage;
+        private int _superPunch = 200;
 
-        override public void UpСharacter()
+        public Warrior(string name, int health, int damage, int atackspeed, int armor) : base(name, health, damage, atackspeed, armor)
         {
-            const int ARMOR_BUFFER = 5;
-            Armor += ARMOR_BUFFER;
+            Damage = _extraDamage + Damage;
+        }
+
+        override public void UsePassiveAbility()
+        {
+            int abilityChance = 15;
+
+            if (Random.Next(1, 101) < abilityChance)
+            {
+                FightingSpirit++;
+                _extraDamage = 12;
+            }
+            else
+                _extraDamage = 0;
+        }
+
+        override public void UseActiveAbility()
+        {
+            Console.Write($"{_name} ... Супер удар!\n");
+            Damage = _superPunch;
+            FightingSpirit = 0;
         }
     }
 
     class Hunter : Fighter
     {
-        public Hunter(string name, int health, int damage, int atackspeed, int armor) : base(name, health, damage, atackspeed, armor) { }
+        private int _rageBonus = 1;
+        private int _dogsDamage = 20;
+        private int _dogsHealth = 100;
 
-        override public void UpСharacter()
+        public Hunter(string name, int health, int damage, int atackspeed, int armor) : base(name, health, damage, atackspeed, armor) 
         {
-            const int DAMAGE_BUFFER = 10;
-            Damage += DAMAGE_BUFFER;
+            Damage = _rageBonus * Damage;
+        }
+
+        override public void UsePassiveAbility()
+        {
+            int abilityChance = 20;
+
+            if (Random.Next(1, 101) < abilityChance)
+            {
+                FightingSpirit++;
+                _rageBonus = 2;
+            }
+            else
+                _rageBonus = 1;
+        }
+
+        override public void UseActiveAbility()
+        {
+            Console.Write($"{_name} ... Собаки призваны!\n");
+            Damage += _dogsDamage;
+            Health += _dogsHealth;
+            FightingSpirit = 0;
         }
     }
 
@@ -172,23 +248,58 @@ namespace Task8
     {
         public Rogue(string name, int health, int damage, int atackspeed, int armor) : base(name, health, damage, atackspeed, armor) { }
 
-        override public void UpСharacter()
+        override public void UsePassiveAbility()
         {
+            int abilityChance = 30;
+
+            if (Random.Next(1, 101) < abilityChance)
+            {
+                FightingSpirit++;
+                Damage += EnemyDamage;
+            }
+        }
+
+        override public void UseActiveAbility()
+        {
+            Console.Write($"{_name} ... Переворот!\n");
             int buffer;
             buffer = Damage;
             Damage = Health;
             Health = buffer;
+            FightingSpirit = 0;
         }
     }
 
     class Shaman : Fighter
     {
+        private int _spiritHealth = 30;
+        private int _spiritArmor = 2;
+        private int _spiritdDamage = 13;
+        private bool _isAbilityActivated = false;
+
         public Shaman(string name, int health, int damage, int atackspeed, int armor) : base(name, health, damage, atackspeed, armor) { }
 
-        override public void UpСharacter()
+        override public void UsePassiveAbility()
         {
-            const int ATACK_SPEED_BUFFER = 2;
-            AttackSpeed += ATACK_SPEED_BUFFER;
+            int abilityChance = 10;
+
+            if (Random.Next(1, 101) < abilityChance)
+            {
+                AttackSpeed = AttackSpeed + 2;
+                FightingSpirit++;
+            }  
+        }
+
+        override public void UseActiveAbility()
+        {
+            if (_isAbilityActivated == false)
+            {
+                Console.Write($"{_name} ... Слияние с духом!\n");
+                Health += _spiritHealth;
+                Damage += _spiritArmor;
+                Armor += _spiritdDamage;
+                _isAbilityActivated = true;
+            }
         }
     }
 }
