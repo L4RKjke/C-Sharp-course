@@ -108,6 +108,7 @@ namespace Task8
     {
         protected string _name;
         protected int _healthChanges;
+        protected Random Random = new Random();
 
         public int FightingSpirit { get; protected set; } = 0;
 
@@ -120,8 +121,6 @@ namespace Task8
         public int Damage { get; protected set; }
 
         public int EnemyDamage { get; protected set; }
-
-        protected Random Random = new Random();
 
         public Fighter(string name, int health, int damage, int attackSpeed, int armor)
         {
@@ -148,11 +147,6 @@ namespace Task8
         public abstract void UsePassiveAbility();
 
         public abstract void UseActiveAbility();
-
-        public bool CheckIsBonusActive()
-        {
-            return false;
-        }
     }
 
     class Magician : Fighter
