@@ -32,7 +32,7 @@ namespace Task12_zoo
                 Console.Write($"Выберите 1 вольер из {_aviaries.Count}: ");
 
                 if (int.TryParse(Console.ReadLine(), out int id) && id <= _aviaries.Count && id > 0)
-                    ShowAviary(id);
+                    ShowAviary(id - 1);
                 else
                     Console.WriteLine("Повторите команду...");
 
