@@ -73,7 +73,7 @@ namespace Task12_zoo
     {
         private List<Animal> _animals = new List<Animal>();
 
-        public string Name { get; set; }
+        public string Name { get; private set; }
 
         public Aviary(List<Animal> animals, string name)
         {
