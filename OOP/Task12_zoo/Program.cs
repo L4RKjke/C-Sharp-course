@@ -95,9 +95,9 @@ namespace Task12_zoo
 
     class Animal
     {
-        public string Gender { get; set; }
+        public string Gender { get; private set; }
 
-        public string Noise { get; set; }
+        public string Noise { get; private set; }
 
         public Animal(string gender, string noise)
         {
