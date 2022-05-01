@@ -16,10 +16,11 @@ namespace Task11_aquarium
     {
         private Aquarium _aquarium = new Aquarium();
         private int _day = 240;
+        private bool _isClose = false;
 
         public void StartLive()
         {
-            while (true)
+            while (_isClose == false)
             {
                 Console.Clear();
                 StartAquarium();
@@ -32,7 +33,7 @@ namespace Task11_aquarium
         private void StartAquarium()
         {
             Console.SetCursorPosition(0, 0);
-            Console.WriteLine("1 - добавить рыбу в аквариум, 2 - достать рыбу из аквариума");
+            Console.WriteLine("1 - добавить рыбу в аквариум, 2 - достать рыбу из аквариума, 3 - отойти от аквариума");
 
             if (Console.KeyAvailable)
             {
@@ -46,6 +47,10 @@ namespace Task11_aquarium
 
                     case '2':
                         TakeFish();
+                        break;
+
+                    case '3':
+                        _isClose = true;
                         break;
 
                     default:
@@ -98,11 +103,12 @@ namespace Task11_aquarium
 
         public void ShowFish()
         {
-            int y = 0;
+            int fishLabelPositionY = 0;
+            int fishLabelPositionX = 87;
 
             foreach (var fish in _fishList)
             {
-                Console.SetCursorPosition(63, y++);
+                Console.SetCursorPosition(fishLabelPositionX, fishLabelPositionY++);
 
                 if (fish.Age <= fish.Health)
                     Console.WriteLine("| " + fish.Name + ", " + "возраст: " + fish.Age);
