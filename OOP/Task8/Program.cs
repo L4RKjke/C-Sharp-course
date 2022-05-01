@@ -106,8 +106,8 @@ namespace Task8
 
     abstract class Fighter
     {
-        protected string _name;
-        protected int _healthChanges;
+        protected string Name;
+        protected int HealthChanges;   
         protected Random Random = new Random();
 
         public int FightingSpirit { get; protected set; } = 0;
@@ -124,7 +124,7 @@ namespace Task8
 
         public Fighter(string name, int health, int damage, int attackSpeed, int armor)
         {
-            _name = name;
+            Name = name;
             Health = health;
             Damage = damage;
             AttackSpeed = attackSpeed;
@@ -134,14 +134,14 @@ namespace Task8
         public void TakeDamage(int damage, int attackSpeed)
         {
             UsePassiveAbility();
-            _healthChanges = damage * attackSpeed - Armor;
+            HealthChanges = damage * attackSpeed - Armor;
             EnemyDamage = damage;
-            Health -= _healthChanges;
+            Health -= HealthChanges;
         }
 
         public void ShowStats(int id)
         {
-            Console.WriteLine($"{id}) класс: {_name}, здоровье: {Health}, урон: {Damage}, скорость атаки: {AttackSpeed}, броня: {Armor}");
+            Console.WriteLine($"{id}) класс: {Name}, здоровье: {Health}, урон: {Damage}, скорость атаки: {AttackSpeed}, броня: {Armor}");
         }
 
         public abstract void UsePassiveAbility();
@@ -160,14 +160,14 @@ namespace Task8
 
             if (Random.Next(1, 101) < abilityChance)
             {
-                Health += _healthChanges;
+                Health += HealthChanges;
                 FightingSpirit++;
             }
         }
 
         override public void UseActiveAbility()
         {
-            Console.Write($"{_name} ... Лечение!\n");
+            Console.Write($"{Name} ... Лечение!\n");
             int healthBonus = 100;
             Health += healthBonus;
             FightingSpirit = 0;
@@ -199,7 +199,7 @@ namespace Task8
 
         override public void UseActiveAbility()
         {
-            Console.Write($"{_name} ... Супер удар!\n");
+            Console.Write($"{Name} ... Супер удар!\n");
             Damage = _superPunch;
             FightingSpirit = 0;
         }
@@ -231,7 +231,7 @@ namespace Task8
 
         override public void UseActiveAbility()
         {
-            Console.Write($"{_name} ... Собаки призваны!\n");
+            Console.Write($"{Name} ... Собаки призваны!\n");
             Damage += _dogsDamage;
             Health += _dogsHealth;
             FightingSpirit = 0;
@@ -255,7 +255,7 @@ namespace Task8
 
         override public void UseActiveAbility()
         {
-            Console.Write($"{_name} ... Переворот!\n");
+            Console.Write($"{Name} ... Переворот!\n");
             int buffer;
             buffer = Damage;
             Damage = Health;
@@ -288,7 +288,7 @@ namespace Task8
         {
             if (_isAbilityActivated == false)
             {
-                Console.Write($"{_name} ... Слияние с духом!\n");
+                Console.Write($"{Name} ... Слияние с духом!\n");
                 Health += _spiritHealth;
                 Damage += _spiritArmor;
                 Armor += _spiritdDamage;
