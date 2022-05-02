@@ -330,7 +330,7 @@ namespace Task10_war
 
         override public void UseActiveAbility()
         {
-            Console.Write($"{Name} ... Лечение!\n");
+            Console.Write($"{Name} ... Бронирование!\n");
             int armorBonus = 10;
             Armor += armorBonus;
             FightingSpirit = 0;
