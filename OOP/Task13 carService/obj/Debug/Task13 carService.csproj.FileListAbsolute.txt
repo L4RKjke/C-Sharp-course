@@ -1,0 +1,8 @@
+C:\Users\niktr\Desktop\VisualStudio\OOP\Task13 carService\bin\Debug\Task13 carService.exe.config
+C:\Users\niktr\Desktop\VisualStudio\OOP\Task13 carService\bin\Debug\Task13 carService.exe
+C:\Users\niktr\Desktop\VisualStudio\OOP\Task13 carService\bin\Debug\Task13 carService.pdb
+C:\Users\niktr\Desktop\VisualStudio\OOP\Task13 carService\obj\Debug\Task13 carService.csproj.AssemblyReference.cache
+C:\Users\niktr\Desktop\VisualStudio\OOP\Task13 carService\obj\Debug\Task13 carService.csproj.SuggestedBindingRedirects.cache
+C:\Users\niktr\Desktop\VisualStudio\OOP\Task13 carService\obj\Debug\Task13 carService.csproj.CoreCompileInputs.cache
+C:\Users\niktr\Desktop\VisualStudio\OOP\Task13 carService\obj\Debug\Task13 carService.exe
+C:\Users\niktr\Desktop\VisualStudio\OOP\Task13 carService\obj\Debug\Task13 carService.pdb
