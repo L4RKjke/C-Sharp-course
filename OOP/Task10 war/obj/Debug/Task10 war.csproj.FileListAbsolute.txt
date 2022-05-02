@@ -1,0 +1,8 @@
+C:\Users\niktr\Desktop\VisualStudio\OOP\Task10 war\bin\Debug\Task10 war.exe.config
+C:\Users\niktr\Desktop\VisualStudio\OOP\Task10 war\bin\Debug\Task10 war.exe
+C:\Users\niktr\Desktop\VisualStudio\OOP\Task10 war\bin\Debug\Task10 war.pdb
+C:\Users\niktr\Desktop\VisualStudio\OOP\Task10 war\obj\Debug\Task10 war.csproj.AssemblyReference.cache
+C:\Users\niktr\Desktop\VisualStudio\OOP\Task10 war\obj\Debug\Task10 war.csproj.SuggestedBindingRedirects.cache
+C:\Users\niktr\Desktop\VisualStudio\OOP\Task10 war\obj\Debug\Task10 war.csproj.CoreCompileInputs.cache
+C:\Users\niktr\Desktop\VisualStudio\OOP\Task10 war\obj\Debug\Task10 war.exe
+C:\Users\niktr\Desktop\VisualStudio\OOP\Task10 war\obj\Debug\Task10 war.pdb
