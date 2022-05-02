@@ -32,6 +32,7 @@ namespace Task10_war
             {
                 new Rogue("Разбойник", 300, 20, 1, 2),
                 new Shaman("Шаман", 200, 8, 4, 30),
+                new Druid("Друид", 200, 8, 4, 6)
             });
         }
 
