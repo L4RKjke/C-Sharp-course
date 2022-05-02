@@ -16,24 +16,23 @@ namespace Task10_war
     class Battle
     {
         private Random _random  = new Random();
-        private List<Fighter> _leftFighters;
-        private List<Fighter> _rightFighters;
+        private Squad _firstSquad;
+        private Squad _secondSquad;
 
         public Battle()
         {
-            _leftFighters = new List<Fighter>()
-                {
+            _firstSquad = new Squad(new List<Fighter>()
+            {
                 new Magician("Маг", 200, 5, 5, 3),
                 new Warrior("Воин", 300, 30, 1, 10),
-                new Hunter("Охотник", 220, 15, 3, 6),
-                };
+                new Hunter("Охотник", 220, 15, 3, 6)
+            });
 
-            _rightFighters = new List<Fighter>()
-                {
+            _secondSquad = new Squad(new List<Fighter>()
+            {
                 new Rogue("Разбойник", 300, 20, 1, 2),
                 new Shaman("Шаман", 200, 8, 4, 30),
-                new Druid("Друид", 200, 8, 4, 6)
-                };
+            });
         }
 
         public void StartFighting()
@@ -43,43 +42,43 @@ namespace Task10_war
             int lightForcesId = 1;
             int darknessForcesId = 2;
 
-            while (_leftFighters.Count > 0 && _rightFighters.Count > 0)
+            while (_firstSquad.GetLength() > 0 && _secondSquad.GetLength() > 0)
             {
-                int numberOfLeftFighter = _random.Next(0, _leftFighters.Count());
-                int numberOfRightFighter = _random.Next(0, _rightFighters.Count());
+                int numberOfLeftFighter = _random.Next(0, _firstSquad.GetLength());
+                int numberOfRightFighter = _random.Next(0, _secondSquad.GetLength());
 
-                forcesOfLight = _leftFighters[numberOfLeftFighter];
-                forcesOfDarkness = _rightFighters[numberOfRightFighter];
+                forcesOfLight = _firstSquad.GetById(numberOfLeftFighter);
+                forcesOfDarkness = _secondSquad.GetById(numberOfRightFighter);
                 forcesOfLight.TakeDamage(forcesOfDarkness.Damage, forcesOfDarkness.AttackSpeed);
                 TryToActivateBonus(forcesOfLight);
                 forcesOfDarkness.TakeDamage(forcesOfLight.Damage, forcesOfLight.AttackSpeed);
                 TryToActivateBonus(forcesOfDarkness);
                 forcesOfLight.ShowStats(lightForcesId);
                 forcesOfDarkness.ShowStats(darknessForcesId);
-                ShowBattleProgress(forcesOfLight, numberOfLeftFighter, _leftFighters);
-                ShowBattleProgress(forcesOfDarkness, numberOfRightFighter, _rightFighters);
+                ShowBattleProgress(forcesOfLight, numberOfLeftFighter, _firstSquad);
+                ShowBattleProgress(forcesOfDarkness, numberOfRightFighter, _secondSquad);
             }
             PickTheWinner();
         }
 
-        private void ShowBattleProgress(Fighter figher, int id, List<Fighter> fighters) 
+        private void ShowBattleProgress(Fighter figher, int id, Squad squad) 
         {
             if (figher.Health < 0)
             {
                 Console.WriteLine($"Боец пал...");
-                fighters.RemoveAt(id);
+                squad.RemoveById(id);
             }
         }
 
         private void PickTheWinner()
         {
-            if (_leftFighters.Count == 0 && _rightFighters.Count == 0)
+            if (_firstSquad.GetLength() == 0 && _secondSquad.GetLength() == 0)
                 Console.Write("\nНичья\n");
 
-            else if (_leftFighters.Count == 0)
+            else if (_firstSquad.GetLength() == 0)
                 Console.Write("\nБой окончен, победа за силами тьмы!\n");
 
-            else if (_rightFighters.Count == 0)
+            else if (_secondSquad.GetLength() == 0)
                 Console.Write("\nБой окончен, победа за силами света!\n");
         }
 
@@ -89,6 +88,31 @@ namespace Task10_war
                 figher.UseActiveAbility();
         }
     }
+
+    class Squad
+    {
+        private List<Fighter> _fighters;
+
+        public Squad(List<Fighter> fighters)
+        {
+            _fighters = fighters;
+        }
+
+        public int GetLength()
+        {
+            return _fighters.Count;
+        }
+
+        public void RemoveById(int id)
+        {
+            _fighters.RemoveAt(id);
+        }
+
+        public Fighter GetById(int id)
+        {  
+            return _fighters[id];
+        }
+}
 
     abstract class Fighter
     {
