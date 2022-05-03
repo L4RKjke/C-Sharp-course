@@ -76,7 +76,7 @@ namespace task13_Service
             bool isInStock = false;
 
             foreach (var detail in _dataBase.GetKeys())
-
+            {
                 if (detail.Name == _detailToRapair)
                 {
                     detailValue = detail;
@@ -86,6 +86,7 @@ namespace task13_Service
                         isInStock = true;
                     }
                 }
+            }
 
             if (isInStock == false)
             {
@@ -103,6 +104,7 @@ namespace task13_Service
             foreach (Detail detail in _dataBase.GetKeys())
             {
                 if (detail.Name == detailToRapair)
+
                     return detail.Price + _dataBase.GetDetailRepairPrice(detailToRapair);
             }
 
@@ -111,15 +113,17 @@ namespace task13_Service
 
         private string GenerateBrokenDetail()
         {
-            int randomDetail = _random.Next(0, _dataBase.GetKeys().Count);
+            int randomDetail = _random.Next(0, _dataBase.Count);
             int dictonaryCounter = 0;
             string randomDetailName = null;
 
             foreach (var detail in _dataBase.GetKeys())
             {
-
                 if (dictonaryCounter == randomDetail)
+                {
                     randomDetailName = detail.Name;
+                    break;
+                }
                 dictonaryCounter++;
             }
 
@@ -130,6 +134,8 @@ namespace task13_Service
     class DataBase
     {
         private Dictionary<Detail, int> _details;
+
+        public int Count { get => _details.Count; }
 
         public DataBase()
         {
@@ -153,9 +159,16 @@ namespace task13_Service
             }
         }
 
-        public Dictionary<Detail, int>.KeyCollection GetKeys()
+        public List<Detail> GetKeys()
         {
-            return _details.Keys;
+            List<Detail> datails = new List<Detail>();
+
+            foreach (var detail in _details.Keys)
+            {
+                datails.Add(detail);
+            }
+
+            return datails;
         }
 
         public int GetDetailCount(Detail detail) 
@@ -165,7 +178,10 @@ namespace task13_Service
 
         public void TakeDetail(Detail detail)
         {
-            _details[detail] = _details[detail] - 1;
+            if (GetDetailCount(detail) > 0)
+            {
+                _details[detail] = _details[detail] - 1;
+            }
         }
 
         public decimal GetDetailRepairPrice(string detailName)
@@ -175,7 +191,10 @@ namespace task13_Service
             foreach (var detail in _details.Keys)
             {
                 if (detail.Name == detailName)
+                {
                     price = detail.RepairPrice;
+                    break;
+                }
             }
 
             return price;
