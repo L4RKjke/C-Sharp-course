@@ -87,21 +87,9 @@ namespace task13_Service
 
         private string GenerateBrokenDetail()
         {
-            int randomDetail = _random.Next(0, _dataBase.Count);
-            int dictonaryCounter = 0;
-            string randomDetailName = null;
+            int randomDetailId = _random.Next(0, _dataBase.Count);
 
-            foreach (var detail in _dataBase.GetKeys())
-            {
-                if (dictonaryCounter == randomDetail)
-                {
-                    randomDetailName = detail.Name;
-                    break;
-                }
-                dictonaryCounter++;
-            }
-
-            return randomDetailName;
+            return _dataBase.GetDetailName(randomDetailId);
         }
     }
 
@@ -133,18 +121,6 @@ namespace task13_Service
             }
         }
 
-        public List<Detail> GetKeys()
-        {
-            List<Detail> datails = new List<Detail>();
-
-            foreach (var detail in _details.Keys)
-            {
-                datails.Add(detail);
-            }
-
-            return datails;
-        }
-
         public int GetDetailCount(Detail detail) 
         {
             return _details[detail];
@@ -168,6 +144,24 @@ namespace task13_Service
             }
 
             return 0;
+        }
+
+        public string GetDetailName(int randomDetail)
+        {
+            int dictonaryCounter = 0;
+            string randomDetailName = null;
+
+            foreach (var detail in _details.Keys)
+            {
+                if (dictonaryCounter == randomDetail)
+                {
+                    randomDetailName = detail.Name;
+                    break;
+                }
+                dictonaryCounter++;
+            }
+
+            return randomDetailName;
         }
 
         public Detail FindDetailInList(string detailToRepair, out bool isInStock, out Detail detailValue)
