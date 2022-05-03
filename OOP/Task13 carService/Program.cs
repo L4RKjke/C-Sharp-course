@@ -19,31 +19,7 @@ namespace task13_Service
         private decimal _balance = 5000;
         private string _detailToRapair;
         private Random _random = new Random();
-        private Dictionary<Detail, int> _details;
-        private Dictionary<string, int> _priceList = new Dictionary<string, int>() 
-        {
-            { "Пыльник", 500 },
-            { "Тормозной диск", 1000 },
-            { "Тормозные колодки", 500 },
-            { "Передний амортизатор", 1500 },
-            { "Задний амортизатор", 1500 },
-            { "Свечи", 100 },
-            { "Воздушный фильтр", 500 },
-        };
-
-        public CarService()
-        {
-            _details = new Dictionary<Detail, int>()
-            {
-                { new Detail("Пыльник", 500), 2 },
-                { new Detail("Тормозной диск", 5000), 4},
-                { new Detail("Тормозные колодки", 1000), 12},
-                { new Detail("Передний амортизатор", 3000), 1},
-                { new Detail("Задний амортизатор", 3000), 4 },
-                { new Detail("Свечи", 500), 20 },
-                { new Detail("Воздушный фильтр", 500), 1 }
-            };
-        }
+        private DataBase _dataBase = new DataBase();
 
         public void StartService()
         {
@@ -52,12 +28,19 @@ namespace task13_Service
             while (_isClose == false)
             {
                 _detailToRapair = GenerateBrokenDetail();
-                ShowAllDetails();
+                _dataBase.ShowAllDetails();
                 Console.WriteLine("\nБаланс сервиса: " + _balance);
                 Console.WriteLine($"\n{numberOfClient} клиент, деталь на починку: {_detailToRapair}, цена c работой: {GetRapairPrice(_detailToRapair)}");
                 numberOfClient++;
                 Console.WriteLine("\n1 - починить деталь, 2 - отказать, 0 - закрыть сервис");
                 SelectComand();
+
+                if (_balance <= 0)
+                {
+                    Console.WriteLine("В вашем сервисе закончились деньги! Нажмите любую кнопку, чтобы закрыть сервис...");
+                    Console.ReadKey(true);
+                    _isClose = true;
+                }
             }
         }
 
@@ -87,25 +70,17 @@ namespace task13_Service
             }
         }
 
-        private void ShowAllDetails()
-        {
-            foreach (var detail in _details.Keys)
-            {
-                Console.WriteLine($"{detail.Name}: {_details[detail]}");
-            }
-        }
-
         private void TryToRapairDetail(string detailToRapair) 
         {
             Detail detailValue = null;
             bool isInStock = false;
 
-            foreach (var detail in _details.Keys)
+            foreach (var detail in _dataBase.GetKeys())
                 if (detail.Name == _detailToRapair)
                 {
                     detailValue = detail;
 
-                    if (_details[detail] != 0)
+                    if (_dataBase.GetDetailCount(detail) != 0)
                     {
                         isInStock = true;
                     }
@@ -117,17 +92,17 @@ namespace task13_Service
             }
             else if (detailValue != null)
             {
-                _details[detailValue] = _details[detailValue] - 1;
+                _dataBase.TakeDetail(detailValue);
                 _balance += GetRapairPrice(_detailToRapair);
             }
         }
 
         private decimal GetRapairPrice(string detailToRapair)
         {
-            foreach (Detail detail in _details.Keys)
+            foreach (Detail detail in _dataBase.GetKeys())
             {
                 if (detail.Name == detailToRapair)
-                    return detail.Price + _priceList[detailToRapair];
+                    return detail.Price + _dataBase.GetDetailRepairPrice(detailToRapair);
             }
 
             return 0;
@@ -135,20 +110,74 @@ namespace task13_Service
 
         private string GenerateBrokenDetail()
         {
-            List<String> details = new List<String>() 
+            int randomDetail = _random.Next(0, _dataBase.GetKeys().Count);
+            int dictonaryCounter = 0;
+            string randomDetailName = null;
+
+            foreach (var detail in _dataBase.GetKeys())
             {
-                "Пыльник",
-                "Тормозной диск",
-                "Тормозные колодки",
-                "Передний амортизатор",
-                "Задний амортизатор",
-                "Свечи",
-                "Воздушный фильтр",
+
+                if (dictonaryCounter == randomDetail)
+                    randomDetailName = detail.Name;
+                dictonaryCounter++;
+            }
+
+            return randomDetailName;
+        }
+    }
+
+    class DataBase
+    {
+        private Dictionary<Detail, int> _details;
+
+        public DataBase()
+        {
+            _details = new Dictionary<Detail, int>()
+            {
+                { new Detail("Пыльник", 500 , 500), 2 },
+                { new Detail("Тормозной диск", 5000, 100), 4},
+                { new Detail("Тормозные колодки", 1000, 500), 12},
+                { new Detail("Передний амортизатор", 3000, 1500), 1},
+                { new Detail("Задний амортизатор", 3000, 1500), 4 },
+                { new Detail("Свечи", 500, 200), 20 },
+                { new Detail("Воздушный фильтр", 500, 300), 1 }
             };
+        }
 
-            int randomDetail = _random.Next(0, details.Count);
+        public void ShowAllDetails()
+        {
+            foreach (var detail in _details.Keys)
+            {
+                Console.WriteLine($"{detail.Name}: {_details[detail]}");
+            }
+        }
 
-            return details[randomDetail];
+        public Dictionary<Detail, int>.KeyCollection GetKeys()
+        {
+            return _details.Keys;
+        }
+
+        public int GetDetailCount(Detail detail) 
+        {
+            return _details[detail];
+        }
+
+        public void TakeDetail(Detail detail)
+        {
+            _details[detail] = _details[detail] - 1;
+        }
+
+        public decimal GetDetailRepairPrice(string detailName)
+        {
+            decimal price = 0;
+
+            foreach (var detail in _details.Keys)
+            {
+                if (detail.Name == detailName)
+                    price = detail.RepairPrice;
+            }
+
+            return price;
         }
     }
 
@@ -164,14 +193,17 @@ namespace task13_Service
 
     class Detail
     {
-        public string Name { get; set; }
+        public string Name { get; private set; }
 
-        public decimal Price { get; set; }
+        public decimal Price { get; private set; }
 
-        public Detail(string name, decimal price)
+        public decimal RepairPrice { get; private set; }
+
+        public Detail(string name, decimal price, decimal repairPrice)
         {
             Name = name;
             Price = price;
+            RepairPrice = repairPrice;
         }
     }
 }
