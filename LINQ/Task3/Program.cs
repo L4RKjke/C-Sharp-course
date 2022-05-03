@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Task3
 {
@@ -80,7 +78,7 @@ namespace Task3
 
             if (searchedPatients.Count() == 0)
             {
-                Console.WriteLine("Пациента найти не удалось.");
+                Console.WriteLine("\nПациента найти не удалось.");
             }
             else
             {
