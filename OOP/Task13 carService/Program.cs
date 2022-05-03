@@ -76,6 +76,7 @@ namespace task13_Service
             bool isInStock = false;
 
             foreach (var detail in _dataBase.GetKeys())
+
                 if (detail.Name == _detailToRapair)
                 {
                     detailValue = detail;
