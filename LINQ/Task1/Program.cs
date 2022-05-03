@@ -31,7 +31,7 @@ namespace Task1
                     decimal inputHeight = height;
                     Console.Write("Введите национальность: ");
                     string inputNationality = Console.ReadLine();
-                    _data.SearchedCriminals(inputWeight, inputHeight, inputNationality);
+                    _data.Search(inputWeight, inputHeight, inputNationality);
                 }
                 else
                 {
@@ -61,7 +61,7 @@ namespace Task1
             };
         }
 
-        public void SearchedCriminals(decimal inputWeight, decimal inputHeight, string inputNationality)
+        public void Search(decimal inputWeight, decimal inputHeight, string inputNationality)
         {
             var SearchedСriminals = from criminal in _criminals
                                     where inputWeight == criminal.Weight && inputHeight == criminal.Height && inputNationality == criminal.Nationality && criminal.IsArested == false
