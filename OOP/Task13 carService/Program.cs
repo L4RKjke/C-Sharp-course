@@ -30,7 +30,7 @@ namespace task13_Service
                 _detailToRapair = GenerateBrokenDetail();
                 _dataBase.ShowAllDetails();
                 Console.WriteLine("\nБаланс сервиса: " + _balance);
-                Console.WriteLine($"\n{numberOfClient} клиент, деталь на починку: {_detailToRapair}, цена c работой: {GetRapairPrice(_detailToRapair)}");
+                Console.WriteLine($"\n{numberOfClient} клиент, деталь на починку: {_detailToRapair}, цена c работой: {_dataBase.GetRapairPrice(_detailToRapair)}");
                 numberOfClient++;
                 Console.WriteLine("\n1 - починить деталь, 2 - отказать, 0 - закрыть сервис");
                 SelectComand();
@@ -52,7 +52,7 @@ namespace task13_Service
             switch (menuComand)
             {
                 case '1':
-                    TryToRapairDetail(_detailToRapair);
+                    RapairDetail(_detailToRapair);
                     break;
 
                 case '2':
@@ -70,45 +70,19 @@ namespace task13_Service
             }
         }
 
-        private void TryToRapairDetail(string detailToRapair) 
+        private void RapairDetail(string detailToRapair) 
         {
-            Detail detailValue = null;
-            bool isInStock = false;
-
-            foreach (var detail in _dataBase.GetKeys())
-            {
-                if (detail.Name == _detailToRapair)
-                {
-                    detailValue = detail;
-
-                    if (_dataBase.GetDetailCount(detail) != 0)
-                    {
-                        isInStock = true;
-                    }
-                }
-            }
+            _dataBase.FindDetailInList(detailToRapair, out bool isInStock, out Detail detailValue);
 
             if (isInStock == false)
             {
-                _balance -= GetRapairPrice(_detailToRapair);
+                _balance -= _dataBase.GetRapairPrice(detailToRapair);
             }
             else if (detailValue != null)
             {
                 _dataBase.TakeDetail(detailValue);
-                _balance += GetRapairPrice(_detailToRapair);
+                _balance += _dataBase.GetRapairPrice(detailToRapair);
             }
-        }
-
-        private decimal GetRapairPrice(string detailToRapair)
-        {
-            foreach (Detail detail in _dataBase.GetKeys())
-            {
-                if (detail.Name == detailToRapair)
-
-                    return detail.Price + _dataBase.GetDetailRepairPrice(detailToRapair);
-            }
-
-            return 0;
         }
 
         private string GenerateBrokenDetail()
@@ -184,20 +158,38 @@ namespace task13_Service
             }
         }
 
-        public decimal GetDetailRepairPrice(string detailName)
+        public decimal GetRapairPrice(string detailToRapair)
         {
-            decimal price = 0;
+            foreach (Detail detail in _details.Keys)
+            {
+                if (detail.Name == detailToRapair)
+
+                    return detail.Price + detail.RepairPrice;
+            }
+
+            return 0;
+        }
+
+        public Detail FindDetailInList(string detailToRepair, out bool isInStock, out Detail detailValue)
+        {
+            isInStock = false;
+            detailValue = null;
 
             foreach (var detail in _details.Keys)
             {
-                if (detail.Name == detailName)
+                if (detail.Name == detailToRepair)
                 {
-                    price = detail.RepairPrice;
-                    break;
+                    if (GetDetailCount(detail) != 0)
+                    {
+                        isInStock = true;
+                    }
+                    detailValue = detail;
+
+                    return detail;
                 }
             }
 
-            return price;
+            return null;
         }
     }
 
