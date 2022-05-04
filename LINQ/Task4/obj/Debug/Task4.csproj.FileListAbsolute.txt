@@ -6,3 +6,11 @@ C:\Users\niktr\Desktop\VisualStudio\LINQ\Task4\obj\Debug\Task4.csproj.SuggestedB
 C:\Users\niktr\Desktop\VisualStudio\LINQ\Task4\obj\Debug\Task4.csproj.CoreCompileInputs.cache
 C:\Users\niktr\Desktop\VisualStudio\LINQ\Task4\obj\Debug\Task4.exe
 C:\Users\niktr\Desktop\VisualStudio\LINQ\Task4\obj\Debug\Task4.pdb
+C:\Users\niktr\OneDrive\Документы\GitHub\test\LINQ\Task4\bin\Debug\Task4.exe.config
+C:\Users\niktr\OneDrive\Документы\GitHub\test\LINQ\Task4\bin\Debug\Task4.exe
+C:\Users\niktr\OneDrive\Документы\GitHub\test\LINQ\Task4\bin\Debug\Task4.pdb
+C:\Users\niktr\OneDrive\Документы\GitHub\test\LINQ\Task4\obj\Debug\Task4.csproj.AssemblyReference.cache
+C:\Users\niktr\OneDrive\Документы\GitHub\test\LINQ\Task4\obj\Debug\Task4.csproj.SuggestedBindingRedirects.cache
+C:\Users\niktr\OneDrive\Документы\GitHub\test\LINQ\Task4\obj\Debug\Task4.csproj.CoreCompileInputs.cache
+C:\Users\niktr\OneDrive\Документы\GitHub\test\LINQ\Task4\obj\Debug\Task4.exe
+C:\Users\niktr\OneDrive\Документы\GitHub\test\LINQ\Task4\obj\Debug\Task4.pdb

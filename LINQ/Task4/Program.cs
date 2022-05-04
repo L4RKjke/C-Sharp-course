@@ -39,13 +39,15 @@ namespace Task4
 
         public void ShowTopByLevel()
         {
-            var topLevelPlayers = _players.OrderByDescending(player => player.Level).Take(3);
+            int topLength = 3;
+            var topLevelPlayers = _players.OrderByDescending(player => player.Level).Take(topLength);
             ShowPlayers(topLevelPlayers);
         }
 
         public void ShowTopByStrenght()
         {
-            var topStrenghtPlayers = _players.OrderByDescending(player => player.Strenght).Take(3); ;
+            int topLength = 3;
+            var topStrenghtPlayers = _players.OrderByDescending(player => player.Strenght).Take(topLength); ;
             ShowPlayers(topStrenghtPlayers);
         }
 
