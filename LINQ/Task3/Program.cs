@@ -38,15 +38,15 @@ namespace Task3
             switch (menuComand)
             {
                 case '1':
-                    SortByFullName();
+                    _data.SortByFullName();
                     break;
 
                 case '2':
-                    SortByAge();
+                    _data.SortByAge();
                     break;
 
                 case '3':
-                    PatientsWithCertainDisease();
+                    _data.FindByDisease(Console.ReadLine());
                     break;
 
                 case '4':
@@ -57,38 +57,6 @@ namespace Task3
                     Console.WriteLine("Повторите команду!");
                     break;
             }
-        }
-
-        private void SortByFullName()
-        {
-            _data.SortByFullName(out IEnumerable<Patient> sortedByFullName);
-            ShowPatients(sortedByFullName);
-        }
-
-        private void SortByAge()
-        {
-            _data.SortByAge(out IEnumerable<Patient> sortedByAge);
-            ShowPatients(sortedByAge);
-        }
-
-        private void PatientsWithCertainDisease()
-        {
-            string disease = Console.ReadLine();
-            _data.FindByDisease(disease, out IEnumerable<Patient> searchedPatients);
-
-            if (searchedPatients.Count() == 0)
-            {
-                Console.WriteLine("\nПациента найти не удалось.");
-            }
-            else
-            {
-                ShowPatients(searchedPatients);
-            }
-        }
-
-        private void ShowPatients(IEnumerable<Patient> patients)
-        {
-            _data.ShowPatients(patients);
         }
     }
 
@@ -105,30 +73,30 @@ namespace Task3
                 { new Patient("Петров Аркадий Никитович", 15, "Перелом") },
                 { new Patient("Пугачев Василий Алексанрович", 23, "Вывих") },
                 { new Patient("Пушкин Алекстандр Сергеевич", 34, "Простуда") },
-                { new Patient("Петров Василий Иванович", 12,  "Сахарный диабет") },
-                { new Patient("Иванов Никита Викторович", 4, "Перелом") },
-                { new Patient("Петров Аркадий Никитович", 65, "Простуда") },
-                { new Patient("Пугачев Василий Алексанрович", 23, "Вывих") },
-                { new Patient("Алексеев Алекстандр Сергеевич", 23, "Перелом") }
+                { new Patient("Рыбаков Николай Леонидович", 65,  "Ушиб") },
+                { new Patient("Маркова Кира Олеговна", 5, "Перелом") },
+                { new Patient("Черный Михаил Павлович", 12, "Перелом") },
+                { new Patient("Овсянникова Варвара Дмитриевна", 76, "Вывих") },
+                { new Patient("Серебрякова Екатерина Степановна", 87, "Простуда") }
             };
         }
 
-        public void SortByFullName(out IEnumerable<Patient> sortedByFullName)
+        public void SortByFullName()
         {
-            sortedByFullName = _patients.OrderBy(patient => patient.FullName);
+            ShowPatients(_patients.OrderBy(patient => patient.FullName)); 
         }
 
-        public void SortByAge(out IEnumerable<Patient> sortedByAge)
+        public void SortByAge()
         {
-            sortedByAge = _patients.OrderBy(patient => patient.Age);
+            ShowPatients(_patients.OrderBy(patient => patient.Age));
         }
 
-        public void FindByDisease(string disease, out IEnumerable<Patient> searchedPatients)
+        public void FindByDisease(string disease)
         {
-            searchedPatients = _patients.Where(patient => patient.Disease.ToLower() == disease.ToLower());
+            ShowPatients(_patients.Where(patient => patient.Disease.ToLower() == disease.ToLower()));
         }
 
-        public void ShowPatients(IEnumerable<Patient> patients)
+        private void ShowPatients(IEnumerable<Patient> patients)
         {
             foreach (var patient in patients)
             {
@@ -140,9 +108,7 @@ namespace Task3
     class Patient
     {
         public string FullName { get; private set; }
-
         public int Age { get; private set; }
-
         public string Disease { get; private set; }
 
         public Patient(string fullName, int age, string disease)
