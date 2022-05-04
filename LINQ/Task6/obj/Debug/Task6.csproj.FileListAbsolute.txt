@@ -1,0 +1,8 @@
+C:\Users\niktr\Desktop\VisualStudio\LINQ\Task6\bin\Debug\Task6.exe.config
+C:\Users\niktr\Desktop\VisualStudio\LINQ\Task6\bin\Debug\Task6.exe
+C:\Users\niktr\Desktop\VisualStudio\LINQ\Task6\bin\Debug\Task6.pdb
+C:\Users\niktr\Desktop\VisualStudio\LINQ\Task6\obj\Debug\Task6.csproj.AssemblyReference.cache
+C:\Users\niktr\Desktop\VisualStudio\LINQ\Task6\obj\Debug\Task6.csproj.SuggestedBindingRedirects.cache
+C:\Users\niktr\Desktop\VisualStudio\LINQ\Task6\obj\Debug\Task6.csproj.CoreCompileInputs.cache
+C:\Users\niktr\Desktop\VisualStudio\LINQ\Task6\obj\Debug\Task6.exe
+C:\Users\niktr\Desktop\VisualStudio\LINQ\Task6\obj\Debug\Task6.pdb
